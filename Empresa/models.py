@@ -21,7 +21,7 @@ class Empresa(models.Model):
         return f'{self.razao_social}({self.cnpj})'
     
 
-class Empresacontato(models.Model):
+class EmpresaContato(models.Model):
     contato = models.CharField(max_length=20)
     obs = models.TextField('Observações', max_length=254, blank=True)
     data_cadastro = models.DateField('Data de cadastro', auto_now_add=True)
@@ -46,7 +46,7 @@ class Empresacontato(models.Model):
     def __str__(self):
         return f'{self.cliente.nome} - {self.tipo_contato}'
 
-class Empresaendereco(models.Model):
+class EmpresaEndereco(models.Model):
     cep = models.CharField('CEP',max_length=9)
     endereco = models.CharField('Endereço', max_length=100)
     numero = models.IntegerField('Número')
