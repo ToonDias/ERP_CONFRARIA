@@ -81,7 +81,7 @@ class Lote(models.Model):
     def __str__(self):
         return f'{self.codigo} : {self.produto.descricao}'
 
-class Local(models.Model):
+class LocalEstoque(models.Model):
     descricao = models.CharField('Descrição', max_length=50)
     ativo = models.BooleanField(default=True)
     aviso_estoque = models.BooleanField(default=True)
@@ -92,15 +92,3 @@ class Local(models.Model):
 
     def __str__(self):
         return self.descricao
-
-class Item(models.Model):
-    lote = models.ForeignKey(Lote, on_delete=models.PROTECT, null=True)
-    local_origem = models.ForeignKey(Local, on_delete=models.PROTECT, null=True)
-    quantidade = models.IntegerField()
-
-    class Meta:
-        verbose_name = 'Item'
-        verbose_name_plural = 'Itens'
-
-    def __str__(self):
-        return f'Lote: {self.lote.codigo} - Produto: {self.lote.produto.descricao} - Quantidade: {self.quantidade}'

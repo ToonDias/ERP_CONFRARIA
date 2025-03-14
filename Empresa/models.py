@@ -44,7 +44,7 @@ class EmpresaContato(models.Model):
         verbose_name_plural = 'Empresa contatos'
 
     def __str__(self):
-        return f'{self.cliente.nome} - {self.tipo_contato}'
+        return f'{self.empresa.razao_social} - {self.tipo_contato}'
 
 class EmpresaEndereco(models.Model):
     cep = models.CharField('CEP',max_length=9)

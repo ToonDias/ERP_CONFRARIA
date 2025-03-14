@@ -8,8 +8,7 @@ from .models import Unidade
 from .models import Produto
 from .models import Fornecedor
 from .models import Lote
-from .models import Local
-from .models import Item
+from .models import LocalEstoque
 
 class CategoriaAdmin(admin.ModelAdmin):
     list_display = ['descricao']
@@ -53,15 +52,9 @@ class LoteAdmin(admin.ModelAdmin):
    
 admin.site.register(Lote, LoteAdmin)
 
-class LocalAdmin(admin.ModelAdmin):
+class LocalEstoqueAdmin(admin.ModelAdmin):
     list_display = ['descricao', 'ativo', 'aviso_estoque']
     search_fields = ['descricao']
     actions = None
 
-admin.site.register(Local, LocalAdmin)
-
-class ItemAdim(admin.ModelAdmin):
-    list_display = ['lote', 'local_origem', 'quantidade']
-    actions = None
-
-admin.site.register(Item, ItemAdim)
+admin.site.register(LocalEstoque, LocalEstoqueAdmin)

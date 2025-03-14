@@ -2,28 +2,28 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Pontorecebimento
-from .models import Planocontas
-from .models import Caixalancamento
+from .models import PontoRecebimento
+from .models import PlanoContas
+from .models import CaixaLancamento
 
-class PontorecebimentoAdmin(admin.ModelAdmin):
+class PontoRecebimentoAdmin(admin.ModelAdmin):
     list_display = ['descricao']
     search_fields = ['descricao']
     actions = None
 
-admin.site.register(Pontorecebimento, PontorecebimentoAdmin)
+admin.site.register(PontoRecebimento, PontoRecebimentoAdmin)
 
-class PlanocontasAdmin(admin.ModelAdmin):
+class PlanoContasAdmin(admin.ModelAdmin):
     list_display = ['codigo_financeiro','descricao',  'tipo']
     search_fields = ['descricao']
     actions = None
 
-admin.site.register(Planocontas, PlanocontasAdmin)
+admin.site.register(PlanoContas, PlanoContasAdmin)
 
-class CaixalancamentoAdmin(admin.ModelAdmin):
+class CaixaLancamentoAdmin(admin.ModelAdmin):
     list_display = ['obs', 'plano_contas','operacao']
     search_fields = ['obs']
     actions = None
 
-admin.site.register(Caixalancamento, CaixalancamentoAdmin)
+admin.site.register(CaixaLancamento, CaixaLancamentoAdmin)
 
