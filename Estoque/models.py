@@ -40,6 +40,7 @@ class Produto(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     fabricante = models.ForeignKey(Fabricante, on_delete=models.PROTECT)
     unidade = models.ForeignKey(Unidade, on_delete=models.PROTECT)
+    imagem = models.ImageField(upload_to='produtos/%Y_%m_%d/', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Produto'

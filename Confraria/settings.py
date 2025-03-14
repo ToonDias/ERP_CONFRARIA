@@ -28,6 +28,12 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# Diretório onde os arquivos de mídia serão armazenados no seu sistema de arquivos.
+MEDIA_ROOT = BASE_DIR/'media'
+
+# URL para acessar os arquivos de mídia (por exemplo, imagens).
+MEDIA_URL = '/media/'
+
 # Application definition
 
 INSTALLED_APPS = [
