@@ -1,6 +1,6 @@
 from django.db import models
 from Cliente.models import Cliente
-from Estoque.models import Lote, Local
+from Estoque.models import Lote, LocalEstoque
 
 # Create your models here.
 
@@ -23,7 +23,7 @@ class Pedido(models.Model):
 class ItemPedido(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.PROTECT)
     lote = models.ForeignKey(Lote, on_delete=models.PROTECT)
-    local = models.ForeignKey(Local, on_delete=models.PROTECT)
+    local = models.ForeignKey(LocalEstoque, on_delete=models.PROTECT)
     quantidade = models.IntegerField()
 
     class Meta:
