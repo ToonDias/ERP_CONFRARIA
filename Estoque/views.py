@@ -8,4 +8,4 @@ def ExibirCategorias(request):
         'Categoria 2':'valor 2'
     }
 
-    render(request, 'categorias.html', context)
+    return render(request, 'estoque/categorias.html', context)
