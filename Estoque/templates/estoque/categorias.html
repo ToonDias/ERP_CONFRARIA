@@ -3,3 +3,11 @@
 {% block 'title' %}
     categorias
 {% endblock %}
+
+{% block 'content-main' %}
+    <h1>Listas de categorias</h1>
+    <hr>
+        {% for categoria in categorias %}
+            <p>{{ categoria.descricao }}</p>
+        {% endfor %}
+{% endblock %}

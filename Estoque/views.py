@@ -3,9 +3,12 @@ from django.shortcuts import render
 # Create your views here.
 
 def ExibirCategorias(request):
+    from .models import Categoria
+
+    categorias = Categoria.objects.all()
+
     context = {
-        'Categoria 1': 'valor 1',
-        'Categoria 2':'valor 2'
+        'categorias': categorias
     }
 
     return render(request, 'estoque/categorias.html', context)
