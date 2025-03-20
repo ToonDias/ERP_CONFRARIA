@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('estoque/', include('Estoque.urls')),
+    path('cliente/', include('Cliente.urls')),
 ]
 
 # Serve os arquivos de mídia enquanto estiver em desenvolvimento (quando DEBUG=True)
