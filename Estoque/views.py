@@ -12,3 +12,6 @@ def ExibirCategorias(request):
     }
 
     return render(request, 'estoque/categorias.html', context)
+
+def CadastrarCategoria(request):
+    return render(request, 'estoque/cadastrar_categoria.html', context={} )
