@@ -13,3 +13,9 @@ def CadastrarPlanoContas(request):
 
 def CadastrarPontoRecebimento(request):
     return render(request, 'financeiro/cadastrar_ponto_recebimento.html', context={})
+
+def CaixaLancamento(request):
+    return render(request, 'financeiro/caixa_lancamento.html', context={})
+
+def CaixaRepasse(request):
+    return render(request, 'financeiro/caixa_repasse.html', context={})
