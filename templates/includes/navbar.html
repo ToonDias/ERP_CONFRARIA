@@ -34,11 +34,10 @@
             <li class="dropdown-submenu">
               <a class="dropdown-item" href="#">Cadastrar</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Empresa</a></li>
-                <li><a class="dropdown-item" href="#">Funcionario</a></li>
-                <li><a class="dropdown-item" href="#">Plano de contas</a></li>
-                <li><a class="dropdown-item" href="#">Ponto de recebimento</a></li>
-                <li><a class="dropdown-item" href="#">Plano de contas</a></li>
+                <li><a class="dropdown-item" href="{% url 'cadastrar_empresa' %}">Empresa</a></li>
+                <li><a class="dropdown-item" href="{% url 'cadastrar_funcionario' %}">Funcionario</a></li>
+                <li><a class="dropdown-item" href="{% url 'cadastrar_plano_contas' %}">Plano de contas</a></li>
+                <li><a class="dropdown-item" href="{% url 'cadastrar_ponto_recebimento' %}">Ponto de recebimento</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">

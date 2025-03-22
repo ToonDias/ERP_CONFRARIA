@@ -12,4 +12,4 @@ def CadastrarPlanoContas(request):
     return render(request, 'financeiro/cadastrar_plano_contas.html', context={})
 
 def CadastrarPontoRecebimento(request):
-    return render(request, 'financeiro/cadastrar_ponto_receimento.html', context={})
+    return render(request, 'financeiro/cadastrar_ponto_recebimento.html', context={})
