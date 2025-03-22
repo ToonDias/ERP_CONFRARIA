@@ -28,13 +28,13 @@ def CadastrarFabricante(request):
     return render(request, 'estoque/cadastrar_fabricante.html', context={})
 
 def CadastrarFornecedor(request):
-    return render(request, 'estoque/cadastrar_fornecedor', context={})
+    return render(request, 'estoque/cadastrar_fornecedor.html', context={})
 
 def CadastrarUnidade(request):
     return render(request, 'estoque/cadastrar_unidade.html', context={})
 
 def CadastrarProduto(request):
-    return render(request, 'estoque/cadastrar_produto.html', contex={})
+    return render(request, 'estoque/cadastrar_produto.html', context={})
 
 def CadastrarLote(request):
     return render(request, 'estoque/cadastrar_lote.html', context={})
