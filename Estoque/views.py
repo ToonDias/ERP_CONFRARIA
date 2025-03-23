@@ -1,17 +1,19 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 
 # Create your views here.
+from .models import Categoria
+from .models import Produto
 
-def ExibirCategorias(request):
-    from .models import Categoria
+class ListarCategirias(ListView):
+    model = Categoria
+    template_name = 'estoque/listar_categorias.html'
+    context_object_name = 'categorias'
 
-    categorias = Categoria.objects.all()
-
-    context = {
-        'categorias': categorias
-    }
-
-    return render(request, 'estoque/categorias.html', context)
+class CadastrarProduto(ListView):
+    model = Produto
+    template_name = 'estoque/cadastrar_produto.html'
+    context_object_name = 'produtos'
 
 def CadastrarCategoria(request):
     from .models import Categoria
@@ -32,9 +34,6 @@ def CadastrarFornecedor(request):
 
 def CadastrarUnidade(request):
     return render(request, 'estoque/cadastrar_unidade.html', context={})
-
-def CadastrarProduto(request):
-    return render(request, 'estoque/cadastrar_produto.html', context={})
 
 def CadastrarLote(request):
     return render(request, 'estoque/cadastrar_lote.html', context={})
