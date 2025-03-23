@@ -24,7 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('estoque/', include('Estoque.urls')),
     path('cliente/', include('Cliente.urls')),
-    path('financeiro/', include('Financeiro.urls'))
+    path('financeiro/', include('Financeiro.urls')),
+    path('atendimento/', include('Pedido.urls')),
 ]
 
 # Serve os arquivos de mídia enquanto estiver em desenvolvimento (quando DEBUG=True)
