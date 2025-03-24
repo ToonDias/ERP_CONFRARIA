@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}
+    Empresa | Deletar
+{% endblock %}
+
+{% block 'content-main' %}
+    <div class="container">
+        <h2>Tem certeza que deseja excluir esta empresa?</h2>
+        <hr class="border border-dark">
+        <p><strong>{{ empresa.razao_social }}</strong></p>
+        <p><strong>{{ empresa.nome_fantasia }}</strong></p>
+        <p><strong>{{ empresa.cnpj }}</strong></p>
+        <hr class="border border-dark">
+        <form method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Sim, excluir</button>
+          <a href="{% url 'listar_empresas' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+{% endblock %}

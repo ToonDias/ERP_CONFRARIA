@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block 'content-main' %}
-<div class="container my-5">
+<div class="container">
   <h2>Atualizar Empresa: <strong>{{ empresa.razao_social }}</strong></h2>
-  <hr>
+  <hr class="border border-dark">
   <form method="post">
     {% csrf_token %}
     <div class="row">
@@ -42,7 +42,7 @@
 
     <div class="mb-3">
       <label for="{{ form.responsavel_data_nasc.id_for_label }}" class="form-label"><strong>Data de Nascimento do Responsável</strong></label>
-      <input type="date" name="responsavel_data_nasc" class="form-control" id="{{ form.responsavel_data_nasc.id_for_label }}" value="{{ form.responsavel_data_nasc.value|default:'' }}">
+      <input type="date" name="responsavel_data_nasc" class="form-control" id="{{ form.responsavel_data_nasc.id_for_label }}" value="{{ form.responsavel_data_nasc.value|date:'Y-m-d' }}">
     </div>
 
     <div class="mb-3">
@@ -55,8 +55,9 @@
       <input type="email" name="email" class="form-control" id="{{ form.email.id_for_label }}" value="{{ form.email.value|default:'' }}">
     </div>
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <hr class="border border-dark">
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a href="{% url 'listar_empresas' %}" class="btn btn-secondary">Cancelar</a>
   </form>
 </div>
-
 {% endblock %}

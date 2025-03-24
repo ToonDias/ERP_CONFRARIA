@@ -22,11 +22,27 @@ class CadastrarEmpresa(CreateView):
     template_name = 'financeiro/empresa/empresa_cadastrar.html'
     success_url = reverse_lazy('listar_empresas')
 
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
 class EditarEmpresa(UpdateView):
     model = Empresa
     form_class = FormEmpresa
     template_name = 'financeiro/empresa/empresa_editar.html'
     context_object_name = 'empresa'
+    success_url = reverse_lazy('listar_empresas')
 
-    def get_success_url(self):
-        return reverse_lazy('empresa_detalhes', kwargs={'empresa_id': self.object.id})
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+    
+class DetalhesEmpresa(DetailView):
+    model = Empresa
+    template_name = 'financeiro/empresa/empresa_detalhes.html'  # Template que exibirá os detalhes
+    context_object_name = 'empresa'
+
+class DeletarEmpresa(DeleteView):
+    model = Empresa
+    template_name = 'financeiro/empresa/empresa_deletar.html'
+    success_url = reverse_lazy('listar_empresas')

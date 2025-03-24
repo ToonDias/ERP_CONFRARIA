@@ -5,57 +5,141 @@
 {% endblock %}
 
 {% block 'content-main' %}
-<div class="container my-5">
-    <h2>Cadastrar Empresa</h2>
-    <hr>
-    <form method="post">
-      {% csrf_token %}
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="{{ form.razao_social.id_for_label }}" class="form-label">Razão Social</label>
-            <input type="text" name="razao_social" class="form-control" id="{{ form.razao_social.id_for_label }}" value="{{ form.razao_social.value|default:'' }}">
+<div class="container">
+  <h2>Cadastrar Empresa</h2>
+  <hr class="border border-dark">
+  <form method="post" novalidate>
+    {% csrf_token %}
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="{{ form.razao_social.id_for_label }}" class="form-label"><strong>Razão Social</strong></label>
+          <input type="text" name="razao_social" class="form-control {% if form.razao_social.errors %}is-invalid{% endif %}" id="{{ form.razao_social.id_for_label }}" value="{{ form.razao_social.value|default:'' }}" required>
+          {% if form.razao_social.errors %}
+            <div class="invalid-feedback">
+              {% for error in form.razao_social.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <div class="valid-feedback">
+            Looks good!
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="{{ form.nome_fantasia.id_for_label }}" class="form-label">Nome Fantasia</label>
-            <input type="text" name="nome_fantasia" class="form-control" id="{{ form.nome_fantasia.id_for_label }}" value="{{ form.nome_fantasia.value|default:'' }}">
+      </div>
+
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="{{ form.nome_fantasia.id_for_label }}" class="form-label"><strong>Nome Fantasia</strong></label>
+          <input type="text" name="nome_fantasia" class="form-control {% if form.nome_fantasia.errors %}is-invalid{% endif %}" id="{{ form.nome_fantasia.id_for_label }}" value="{{ form.nome_fantasia.value|default:'' }}" required>
+          {% if form.nome_fantasia.errors %}
+            <div class="invalid-feedback">
+              {% for error in form.nome_fantasia.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <div class="valid-feedback">
+            Looks good!
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="mb-3">
-        <label for="{{ form.cnpj.id_for_label }}" class="form-label">CNPJ</label>
-        <input type="text" name="cnpj" class="form-control" id="{{ form.cnpj.id_for_label }}" value="{{ form.cnpj.value|default:'' }}">
+    <div class="mb-3">
+      <label for="{{ form.cnpj.id_for_label }}" class="form-label"><strong>CNPJ</strong></label>
+      <input type="text" name="cnpj" class="form-control {% if form.cnpj.errors %}is-invalid{% endif %}" id="{{ form.cnpj.id_for_label }}" value="{{ form.cnpj.value|default:'' }}" required>
+      {% if form.cnpj.errors %}
+        <div class="invalid-feedback">
+          {% for error in form.cnpj.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="valid-feedback">
+        Looks good!
       </div>
+    </div>
 
-      <div class="mb-3">
-        <label for="{{ form.responsavel.id_for_label }}" class="form-label">Responsável Legal</label>
-        <input type="text" name="responsavel" class="form-control" id="{{ form.responsavel.id_for_label }}" value="{{ form.responsavel.value|default:'' }}">
+    <div class="mb-3">
+      <label for="{{ form.responsavel.id_for_label }}" class="form-label"><strong>Responsável Legal</strong></label>
+      <input type="text" name="responsavel" class="form-control {% if form.responsavel.errors %}is-invalid{% endif %}" id="{{ form.responsavel.id_for_label }}" value="{{ form.responsavel.value|default:'' }}" required>
+      {% if form.responsavel.errors %}
+        <div class="invalid-feedback">
+          {% for error in form.responsavel.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="valid-feedback">
+        Looks good!
       </div>
+    </div>
 
-      <div class="mb-3">
-        <label for="{{ form.responsavel_cpf.id_for_label }}" class="form-label">CPF do Responsável</label>
-        <input type="text" name="responsavel_cpf" class="form-control" id="{{ form.responsavel_cpf.id_for_label }}" value="{{ form.responsavel_cpf.value|default:'' }}">
+    <div class="mb-3">
+      <label for="{{ form.responsavel_cpf.id_for_label }}" class="form-label"><strong>CPF do Responsável</strong></label>
+      <input type="text" name="responsavel_cpf" class="form-control {% if form.responsavel_cpf.errors %}is-invalid{% endif %}" id="{{ form.responsavel_cpf.id_for_label }}" value="{{ form.responsavel_cpf.value|default:'' }}" required pattern="\d{11}">
+      {% if form.responsavel_cpf.errors %}
+        <div class="invalid-feedback">
+          {% for error in form.responsavel_cpf.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="valid-feedback">
+        Looks good!
       </div>
+    </div>
 
-      <div class="mb-3">
-        <label for="{{ form.responsavel_data_nasc.id_for_label }}" class="form-label">Data de Nascimento do Responsável</label>
-        <input type="date" name="responsavel_data_nasc" class="form-control" id="{{ form.responsavel_data_nasc.id_for_label }}" value="{{ form.responsavel_data_nasc.value|default:'' }}">
+    <div class="mb-3">
+      <label for="{{ form.responsavel_data_nasc.id_for_label }}" class="form-label"><strong>Data de Nascimento do Responsável</strong></label>
+      <input type="date" name="responsavel_data_nasc" class="form-control {% if form.responsavel_data_nasc.errors %}is-invalid{% endif %}" id="{{ form.responsavel_data_nasc.id_for_label }}" value="{{ form.responsavel_data_nasc.value|default:'' }}" required>
+      {% if form.responsavel_data_nasc.errors %}
+        <div class="invalid-feedback">
+          {% for error in form.responsavel_data_nasc.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="valid-feedback">
+        Looks good!
       </div>
+    </div>
 
-      <div class="mb-3">
-        <label for="{{ form.contato.id_for_label }}" class="form-label">Contato</label>
-        <input type="text" name="contato" class="form-control" id="{{ form.contato.id_for_label }}" value="{{ form.contato.value|default:'' }}">
+    <div class="mb-3">
+      <label for="{{ form.contato.id_for_label }}" class="form-label"><strong>Contato</strong></label>
+      <input type="text" name="contato" class="form-control {% if form.contato.errors %}is-invalid{% endif %}" id="{{ form.contato.id_for_label }}" value="{{ form.contato.value|default:'' }}" required>
+      {% if form.contato.errors %}
+        <div class="invalid-feedback">
+          {% for error in form.contato.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="valid-feedback">
+        Looks good!
       </div>
+    </div>
 
-      <div class="mb-3">
-        <label for="{{ form.email.id_for_label }}" class="form-label">E-mail</label>
-        <input type="email" name="email" class="form-control" id="{{ form.email.id_for_label }}" value="{{ form.email.value|default:'' }}">
+    <div class="mb-3">
+      <label for="{{ form.email.id_for_label }}" class="form-label"><strong>E-mail</strong></label>
+      <input type="email" name="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" id="{{ form.email.id_for_label }}" value="{{ form.email.value|default:'' }}" required>
+      {% if form.email.errors %}
+        <div class="invalid-feedback">
+          {% for error in form.email.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="valid-feedback">
+        Looks good!
       </div>
+    </div>
 
-      <button type="submit" class="btn btn-success">Salvar</button>
-    </form>
+    <hr class="border border-dark">
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a href="{% url 'listar_empresas' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
 </div>
 {% endblock %}
