@@ -20,46 +20,56 @@
       <!-- Tabela de Empresas -->
       <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
         <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Razão Social</th>
-              <th scope="col">Nome Fantasia</th>
-              <th scope="col">CNPJ</th>
-              <th scope="col">Responsável</th>
-              <th scope="col" class="text-center">Ações</th>
-            </tr>
-          </thead>
-          <tbody class="table-group-divider">
-            {% if empresas %}
-              {% for empresa in empresas %}
+            <thead>
               <tr>
-                <th scope="row">{{ empresa.id }}</th>
-                <td>{{ empresa.razao_social }}</td>
-                <td>{{ empresa.nome_fantasia }}</td>
-                <td>{{ empresa.cnpj }}</td>
-                <td>{{ empresa.responsavel }}</td>
-                <td class="text-center">
-                  <div class="btn-group">
-                    <a type="button" role="button" href="{% url 'detalhes_empresa' pk=empresa.id %}" class="btn btn-info">Detalhes</a>
-                    <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                      <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{% url 'editar_empresa' pk=empresa.id %}">Editar</a></li>
-                      <li><a class="dropdown-item" href="{% url 'deletar_empresa' pk=empresa.id %}">Deletar</a></li>
-                    </ul>
-                  </div>
-                </td>
+                <!-- Esconde as colunas ID e Razão Social apenas em telas menores que "md" -->
+                <th scope="col" class="d-none d-md-table-cell">ID</th>
+                <th scope="col" class="d-none d-md-table-cell">Razão Social</th>
+                <!-- Coluna Nome Fantasia visível sempre -->
+                <th scope="col">Nome Fantasia</th>
+                <!-- Coluna CNPJ visível sempre -->
+                <th scope="col">CNPJ</th>
+                <!-- Esconde a coluna Responsável apenas em telas menores que "md" -->
+                <th scope="col" class="d-none d-md-table-cell">Responsável</th>
+                <!-- Coluna Ações visível sempre -->
+                <th scope="col" class="text-center">Ações</th>
               </tr>
-              {% endfor %}
-            {% else %}
-              <tr>
-                <th scope="col" colspan="6" class="text-center">Sem empresas cadastradas</th>
-              </tr>
-            {% endif %}
-          </tbody>
-        </table>
+            </thead>
+            <tbody class="table-group-divider">
+              {% if empresas %}
+                {% for empresa in empresas %}
+                  <tr>
+                    <!-- Esconde a coluna ID apenas em telas menores que "md" -->
+                    <th scope="row" class="d-none d-md-table-cell">{{ empresa.id }}</th>
+                    <!-- Esconde a coluna Razão Social apenas em telas menores que "md" -->
+                    <td class="d-none d-md-table-cell">{{ empresa.razao_social }}</td>
+                    <!-- Coluna Nome Fantasia visível sempre -->
+                    <td>{{ empresa.nome_fantasia }}</td>
+                    <!-- Coluna CNPJ visível sempre -->
+                    <td>{{ empresa.cnpj }}</td>
+                    <!-- Esconde a coluna Responsável apenas em telas menores que "md" -->
+                    <td class="d-none d-md-table-cell">{{ empresa.responsavel }}</td>
+                    <td class="text-center">
+                      <div class="btn-group">
+                        <a type="button" role="button" href="{% url 'detalhes_empresa' pk=empresa.id %}" class="btn btn-info">Detalhes</a>
+                        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'editar_empresa' pk=empresa.id %}">Editar</a></li>
+                          <li><a class="dropdown-item" href="{% url 'deletar_empresa' pk=empresa.id %}">Deletar</a></li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+              {% else %}
+                <tr>
+                  <th scope="col" colspan="6" class="text-center">Sem empresas cadastradas</th>
+                </tr>
+              {% endif %}
+            </tbody>
+          </table>          
       </div>
     </div>
   </div>
