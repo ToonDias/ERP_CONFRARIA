@@ -5,17 +5,33 @@
 {% endblock %}
 
 {% block 'content-main' %}
-    <div class="container">
-        <h2>Tem certeza que deseja excluir esta empresa?</h2>
-        <hr class="border border-dark">
-        <p><strong>{{ empresa.razao_social }}</strong></p>
-        <p><strong>{{ empresa.nome_fantasia }}</strong></p>
-        <p><strong>{{ empresa.cnpj }}</strong></p>
-        <hr class="border border-dark">
-        <form method="post">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-danger">Sim, excluir</button>
-          <a href="{% url 'listar_empresas' %}" class="btn btn-secondary">Cancelar</a>
-        </form>
+<div class="container mt-5">
+  <!-- Card Externo com borda suave e sombra -->
+  <div class="card shadow-lg border-light rounded-3">
+    <div class="card-header text-center bg-success text-white">
+      <h3>Deletar Empresa: <strong>{{ empresa.razao_social }}</strong></h3>
     </div>
+    <div class="card-body">
+      <p><strong>Tem certeza que deseja excluir esta empresa?</strong></p>
+      
+      <!-- Informações da Empresa com borda e sombra -->
+      <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
+        <h4 class="mb-3 text-success">Informações da Empresa</h4>
+        <p><strong>Razão Social:</strong> {{ empresa.razao_social }}</p>
+        <p><strong>Nome Fantasia:</strong> {{ empresa.nome_fantasia }}</p>
+        <p><strong>CNPJ:</strong> {{ empresa.cnpj }}</p>
+      </div>
+
+      <!-- Botões de Ação -->
+      <form method="post">
+        {% csrf_token %}
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-danger shadow-sm px-4 py-2">Sim, excluir</button>
+          <a href="{% url 'listar_empresas' %}" class="btn btn-secondary shadow-sm px-4 py-2">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Fim do Card Externo -->
+</div>
 {% endblock %}
