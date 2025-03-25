@@ -21,14 +21,14 @@ class CategoriaListView(ListView):
 class CategoriaCreateView(CreateView):
     model = Categoria
     template_name = 'estoque/categoria/create.html'
-    form_cass = FormCategoria
-    template_name = 'estoque/categoria/list.html'
+    form_class = FormCategoria
+    template_name = 'estoque/categoria/create.html'
     success_url = reverse_lazy('listar_categorias')
 
 class CategoriaUpdateView(UpdateView):
     model = Categoria
     template_name = 'estoque/categoria/update.html'
-    form_cass = FormCategoria
+    form_class = FormCategoria
     success_url = reverse_lazy('listar_categorias')
 
 class CategoriaDeleteView(DeleteView):
