@@ -4,7 +4,7 @@ from django.views.generic import ListView
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
-from django.views.generic import DeleteView
+from django.views.generic import DetailView
 
 from .forms import FormCategoria
 
@@ -36,9 +36,9 @@ class CategoriaDeleteView(DeleteView):
     template_name = 'estoque/categoria/delete.html'
     success_url = reverse_lazy('listar_categorias')
 
-class CategoriaDetailView(DeleteView):
+class CategoriaDetailView(DetailView):
     model = Categoria
-    template_name = 'estoque/categoria/detail.html'
+    template_name = 'estoque/categoria/details.html'
     context_object_name = 'categoria'
 
 
