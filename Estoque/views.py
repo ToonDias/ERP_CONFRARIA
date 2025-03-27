@@ -54,23 +54,23 @@ class FabricanteCreateView(CreateView):
     model = Fabricante
     template_name = 'estoque/fabricante/create.html'
     form_class = FormFabricante
-    success_url = reverse_lazy('listar_fabricantes')
+    success_url = reverse_lazy('listar_fabricates')
 
 class FabricanteUpdateView(UpdateView):
     model = Fabricante
     template_name = 'estoque/fabricante/update.html'
     form_class = FormFabricante
-    success_url = reverse_lazy('list_fabricantes')
+    success_url = reverse_lazy('listar_fabricates')
 
 class FabricanteDetailView(DetailView):
     model = Fabricante
     template_name = 'estoque/fabricante/details.html'
     context_object_name = 'fabricante'
 
-class FabricanteDeleteViews(DeleteView):
+class FabricanteDeleteView(DeleteView):
     model = Fabricante
     template_name = 'estoque/fabricante/delete.html'
-    success_url = reverse_lazy('list_fabricante')
+    success_url = reverse_lazy('listar_fabricates')
 
 
 class CadastrarProduto(ListView):
