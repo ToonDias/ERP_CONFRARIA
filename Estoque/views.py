@@ -7,12 +7,15 @@ from django.views.generic import DeleteView
 from django.views.generic import DetailView
 
 from .forms import FormCategoria
+from .forms import FormFabricante
 
 # Create your views here.
 from .models import Categoria
+from .models import Fabricante
 from .models import Produto
 
 
+# Views Categoria
 class CategoriaListView(ListView):
     model = Categoria
     template_name = 'estoque/categoria/list.html'
@@ -40,6 +43,8 @@ class CategoriaDetailView(DetailView):
     model = Categoria
     template_name = 'estoque/categoria/details.html'
     context_object_name = 'categoria'
+
+# Views Fabricante
 
 
 
