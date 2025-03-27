@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block 'title' %}
-    Categoria | Deletar
+    Fabricante | Deletar
 {% endblock %}
 
 {% block 'content-main' %}
@@ -9,15 +9,15 @@
   <!-- Card Externo com borda suave e sombra -->
   <div class="card shadow-lg border-light rounded-3">
     <div class="card-header text-center bg-success text-white">
-      <h3>Deletar Categoria: <strong>{{ categoria.descricao }}</strong></h3>
+      <h3>Deletar Fabricante: <strong>{{ fabricante.descricao }}</strong></h3>
     </div>
     <div class="card-body">
-      <p><strong>Tem certeza que deseja excluir esta categoria?</strong></p>
+      <p><strong>Tem certeza que deseja excluir esta fabricante?</strong></p>
 
-      <!-- Informações da Categoria com borda e sombra -->
+      <!-- Informações da Fabricante com borda e sombra -->
       <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
-        <h4 class="mb-3 text-success">Informações da Categoria</h4>
-        <p><strong>Descrição:</strong> {{ categoria.descricao }}</p>
+        <h4 class="mb-3 text-success">Informações da Fabricante</h4>
+        <p><strong>Descrição:</strong> {{ fabricante.descricao }}</p>
       </div>
 
       <!-- Botões de Ação -->
@@ -25,7 +25,7 @@
         {% csrf_token %}
         <div class="d-flex justify-content-between">
           <button type="submit" class="btn btn-danger shadow-sm px-4 py-2">Sim, excluir</button>
-          <a href="{% url 'listar_categorias' %}" class="btn btn-secondary shadow-sm px-4 py-2">Cancelar</a>
+          <a href="{% url 'listar_fabricantes' %}" class="btn btn-secondary shadow-sm px-4 py-2">Cancelar</a>
         </div>
       </form>
     </div>

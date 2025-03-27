@@ -9,7 +9,7 @@ urlpatterns = [
     path('categoria/detalhes/<int:pk>', views.CategoriaDetailView.as_view(), name='detalhes_categoria'),
     path('categoria/deletar/<int:pk>', views.CategoriaDeleteView.as_view(), name='deletar_categoria'),
     # urls Fabricantes
-    path('fabricantes/', views.FabricanteListView.as_view(), name='listar_fabricates'),
+    path('fabricantes/', views.FabricanteListView.as_view(), name='listar_fabricantes'),
     path('fabricante/adicionar', views.FabricanteCreateView.as_view(), name='novo_fabricante'),
     path('fabricante/atualizar/<int:pk>', views.FabricanteUpdateView.as_view(), name='editar_fabricante'),
     path('fabricante/detalhes/<int:pk>', views.FabricanteDetailView.as_view(), name='detalhes_fabricante'),
