@@ -25,7 +25,6 @@ class CategoriaCreateView(CreateView):
     model = Categoria
     template_name = 'estoque/categoria/create.html'
     form_class = FormCategoria
-    template_name = 'estoque/categoria/create.html'
     success_url = reverse_lazy('listar_categorias')
 
 class CategoriaUpdateView(UpdateView):
@@ -46,6 +45,32 @@ class CategoriaDetailView(DetailView):
 
 # Views Fabricante
 
+class FabricanteListView(ListView):
+    model = Fabricante
+    template_name = 'estoque/fabricante/list.html'
+    context_object_name = 'fabricantes'
+
+class FabricanteCreateView(CreateView):
+    model = Fabricante
+    template_name = 'estoque/fabricante/create.html'
+    form_class = FormFabricante
+    success_url = reverse_lazy('listar_fabricantes')
+
+class FabricanteUpdateView(UpdateView):
+    model = Fabricante
+    template_name = 'estoque/fabricante/update.html'
+    form_class = FormFabricante
+    success_url = reverse_lazy('list_fabricantes')
+
+class FabricanteDetailView(DetailView):
+    model = Fabricante
+    template_name = 'estoque/fabricante/details.html'
+    context_object_name = 'fabricante'
+
+class FabricanteDeleteViews(DeleteView):
+    model = Fabricante
+    template_name = 'estoque/fabricante/delete.html'
+    success_url = reverse_lazy('list_fabricante')
 
 
 class CadastrarProduto(ListView):
