@@ -71,7 +71,7 @@ class FabricanteDetailView(DetailView):
 
 class FabricanteDeleteView(DeleteView):
     model = Fabricante
-    template_name = 'estoque/fabricante/detele.html'
+    template_name = 'estoque/fabricante/delete.html'
     success_url = reverse_lazy('listar_fabricantes')
 
 # Views Unidade
@@ -91,7 +91,7 @@ class UnidadeUpdateView(UpdateView):
     model = Unidade
     form_class = FormUnidade
     template_name = 'estoque/unidade/update.html'
-    success_url = reverse_lazy('listar_unidade')
+    success_url = reverse_lazy('listar_unidades')
 
 class UnidadeDetailView(DetailView):
     model  = Unidade
@@ -101,7 +101,7 @@ class UnidadeDetailView(DetailView):
 class UnidadeDeleteView(DeleteView):
     model = Unidade
     template_name = 'estoque/unidade/delete.html'
-    success_url = reverse_lazy('listar_unidade')
+    success_url = reverse_lazy('listar_unidades')
 
 #Views Produto
 
