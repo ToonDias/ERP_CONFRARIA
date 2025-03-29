@@ -14,6 +14,12 @@ urlpatterns = [
     path('fabricante/atualizar/<int:pk>', views.FabricanteUpdateView.as_view(), name='editar_fabricante'),
     path('fabricante/detalhes/<int:pk>', views.FabricanteDetailView.as_view(), name='detalhes_fabricante'),
     path('fabricante/deletar/<int:pk>', views.FabricanteDeleteView.as_view(), name='deletar_fabricante'),
+    # urls Unidade
+    path('unidades/', views.UnidadeListView.as_view(), name='listar_unidades'),
+    path('unidade/adicionar', views.UnidadeCreateView.as_view(), name='nova_unidade'),
+    path('undiade/atualizar/<int:pk>', views.UnidadeUpdateView.as_view(), name='editar_unidade'),
+    path('unidade/detalhes/<int:pk>', views.UnidadeDetailView.as_view(), name='detalhes_unidade'),
+    path('unidade/delete/<int:pk>', views.UnidadeDeleteView.as_view(), name='deletar_unidade'),
     #urls outros
     path('cadastrar/fornecedor', views.CadastrarFornecedor, name='cadastrar_fornecedor'),
     path('cadastrar/unidade', views.CadastrarUnidade, name='cadastrar_unidade'),
