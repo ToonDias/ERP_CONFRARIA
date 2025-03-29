@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block 'title' %}
-    Estoque | Fabricantes
+    Estoque | Unidades
 {% endblock %}
 
 {% block 'content-main' %}
@@ -9,15 +9,15 @@
   <!-- Card Externo com borda suave e sombra -->
   <div class="card shadow-lg border-light rounded-3">
     <div class="card-header text-center bg-success text-white">
-      <h3>Lista de Fabricantes</h3>
+      <h3>Lista de Unidades</h3>
     </div>
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h4 class="mb-0">Fabricantes cadastrados</h4>
-        <a class="btn btn-success shadow-sm" role="button" href="{% url 'novo_fabricante' %}">Adicionar Fabricante</a>
+        <h4 class="mb-0">Unidades cadastradas</h4>
+        <a class="btn btn-success shadow-sm" role="button" href="{% url 'nova_unidade' %}">Adicionar Unidade</a>
       </div>
 
-      <!-- Tabela de Fabricantes -->
+      <!-- Tabela de Unidades -->
       <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
         <table class="table table-striped">
             <thead>
@@ -28,20 +28,20 @@
               </tr>
             </thead>
             <tbody class="table-group-divider">
-              {% if fabricantes %}
-                {% for fabricante in fabricantes %}
+              {% if unidades %}
+                {% for unidade in unidades %}
                   <tr>
-                    <th scope="row">{{ fabricante.id }}</th>
-                    <td>{{ fabricante.descricao }}</td>
+                    <th scope="row">{{ unidade.id }}</th>
+                    <td>{{ unidade.descricao }}</td>
                     <td class="text-center">
                       <div class="btn-group">
-                        <a type="button" role="button" href="{% url 'detalhes_fabricante' pk=fabricante.id %}" class="btn btn-info">Detalhes</a>
+                        <a type="button" role="button" href="{% url 'detalhes_unidade' pk=unidade.id %}" class="btn btn-info">Detalhes</a>
                         <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                           <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="{% url 'editar_fabricante' pk=fabricante.id %}">Editar</a></li>
-                          <li><a class="dropdown-item" href="{% url 'deletar_fabricante' pk=fabricante.id %}">Deletar</a></li>
+                          <li><a class="dropdown-item" href="{% url 'editar_unidade' pk=unidade.id %}">Editar</a></li>
+                          <li><a class="dropdown-item" href="{% url 'deletar_unidade' pk=unidade.id %}">Deletar</a></li>
                         </ul>
                       </div>
                     </td>
@@ -49,7 +49,7 @@
                 {% endfor %}
               {% else %}
                 <tr>
-                  <th scope="col" colspan="6" class="text-center">Sem Fabricantes cadastrados</th>
+                  <th scope="col" colspan="6" class="text-center">Sem Unidades cadastradas</th>
                 </tr>
               {% endif %}
             </tbody>
