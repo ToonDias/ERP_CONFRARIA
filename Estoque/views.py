@@ -8,10 +8,12 @@ from django.views.generic import DetailView
 
 from .forms import FormCategoria
 from .forms import FormFabricante
+from .forms import FormUnidade
 
 # Create your views here.
 from .models import Categoria
 from .models import Fabricante
+from .models import Unidade
 from .models import Produto
 
 
@@ -72,6 +74,36 @@ class FabricanteDeleteView(DeleteView):
     template_name = 'estoque/fabricante/detele.html'
     success_url = reverse_lazy('listar_fabricantes')
 
+# Views Unidade
+
+class UnidadeListView(ListView):
+    model = Unidade
+    template_name = 'estoque/unidade/list.html'
+    context_object_name = 'unidades'
+
+class UnidadeCreateView(CreateView):
+    model = Unidade
+    form_class = FormUnidade
+    template_name = 'estoque/unidade/create.html'
+    success_url = reverse_lazy('listar_unidades')
+
+class UnidadeUpdateView(UpdateView):
+    model = Unidade
+    form_class = FormUnidade
+    template_name = 'estoque/unidade/update.html'
+    success_url = reverse_lazy('listar_unidade')
+
+class UnidadeDetailView(DetailView):
+    model  = Unidade
+    template_name = 'estoque/unidade/details.html'
+    context_object_name = 'unidade'
+
+class UnidadeDeleteView(DeleteView):
+    model = Unidade
+    template_name = 'estoque/unidade/delete.html'
+    success_url = reverse_lazy('listar_unidade')
+
+#Views Produto
 
 class CadastrarProduto(ListView):
     model = Produto
