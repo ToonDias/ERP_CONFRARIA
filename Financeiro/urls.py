@@ -3,11 +3,11 @@ from . import views
 
 urlpatterns = [
     # PlanoContas urls
-    path('planos-contas/', views.PlanoContasListView.as_views(), name=''),
-    path('planos-contas/', views.PlanoContasCreateView.as_views(), name=''),
-    path('planos-contas/', views.PlanoContasUpdateView.as_views(), name=''),
-    path('planos-contas/', views.PlanoContasDetailView.as_views(), name=''),
-    path('planos-contas/', views.PlanoContasDeleteView.as_views(), name=''),
+    path('planos-contas/', views.PlanoContasListView.as_views(), name='listar_planos'),
+    path('planos-contas/adicionar/', views.PlanoContasCreateView.as_views(), name='novo_plano'),
+    path('planos-contas/atualizar/<int:pk>', views.PlanoContasUpdateView.as_views(), name='editar_plano'),
+    path('planos-contas/detalhes/<int:pk>', views.PlanoContasDetailView.as_views(), name='detalhes_plano'),
+    path('planos-contas/detelar/<int:pk>', views.PlanoContasDeleteView.as_views(), name='deletar_plano'),
     # Outras URLs
     path('cadastrar/empresa', views.CadastrarEmpresa, name='cadastrar_empresa'),
     path('cadastrar/funcionario', views.CadastrarFuncionario, name='cadastrar_funcionario'),
