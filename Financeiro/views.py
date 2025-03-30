@@ -22,13 +22,13 @@ class PlanoContasListView(ListView):
 class PlanoContasCreateView(CreateView):
     model = PlanoContas
     form_class = FormPlanoContas
-    template_name = 'financeito/plano_contas/create.html'
+    template_name = 'financeiro/plano_contas/create.html'
     success_url = reverse_lazy('listar_planos')
 
 class PlanoContasUpdateView(UpdateView):
     model = PlanoContas
     form_class = FormPlanoContas
-    template_name = 'financeiro/plano-contas/update.html'
+    template_name = 'financeiro/plano_contas/update.html'
     success_url = reverse_lazy('listar_planos')
 
 class PlanoContasDetailView(DetailView):
