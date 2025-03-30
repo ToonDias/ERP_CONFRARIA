@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block 'title' %}
-    Ponto de recebimento | Cadastro
+    Ponto | Cadastro
 {% endblock %}
 
 {% block 'content-main' %}
@@ -9,15 +9,15 @@
   <!-- Card Externo com borda suave e sombra -->
   <div class="card shadow-lg border-light rounded-3">
     <div class="card-header text-center bg-success text-white">
-      <h3>Cadastrar Ponto de recebimento</h3>
+      <h3>Cadastrar Ponto</h3>
     </div>
     <div class="card-body">
       <form method="POST" novalidate>
         {% csrf_token %}
         
-        <!-- Sessão Ponto de recebimento -->
+        <!-- Sessão Ponto -->
         <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
-          <h4 class="mb-3 text-success">Informações do Ponto de recebimento</h4>
+          <h4 class="mb-3 text-success">Informações da Ponto</h4>
           <div class="row">
             <div class="col-md-12">
               <div class="mb-3">

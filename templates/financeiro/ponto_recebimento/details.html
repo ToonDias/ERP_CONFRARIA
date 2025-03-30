@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}
+    Ponto | Detalhes
+{% endblock %}
+
+{% block 'content-main' %}
+<div class="container mt-5">
+    <!-- Card Externo com borda suave e sombra média -->
+    <div class="card shadow-lg border-light rounded-3">
+        <div class="card-header text-center bg-success text-white">
+            <h3>Detalhes do Ponto: <strong>{{ ponto.descricao }}</strong></h3>
+        </div>
+        <div class="card-body">
+            <!-- Informações do Ponto -->
+            <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
+                <dl class="row mb-4">
+                    <dt class="col-sm-3"><strong>Descrição:</strong></dt>
+                    <dd class="col-sm-9">{{ ponto.descricao }}</dd>
+                </dl>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="row">
+                <div class="col-8">
+                    <a href="{% url 'editar_ponto' ponto.pk %}" class="btn btn-primary px-4 py-2">Editar</a>
+                    <a href="{% url 'listar_pontos' %}" class="btn btn-secondary px-4 py-2">Voltar</a>
+                </div>
+                <div class="col-4 text-end">
+                    <a href="{% url 'deletar_ponto' ponto.pk %}" class="btn btn-danger px-4 py-2">Deletar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fim do Card Externo -->
+</div>
+{% endblock %}

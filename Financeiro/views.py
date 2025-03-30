@@ -9,6 +9,7 @@ from django.views.generic import DeleteView
 from .models import PlanoContas
 
 from .forms import FormPlanoContas
+from .forms import FormPontoRecebimento
 
 # Create your views here.
 
