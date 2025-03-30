@@ -9,5 +9,5 @@ class FormPlanoContas(forms.ModelForm):
 
 class FormPontoRecebimento(forms.ModelForm):
     class Meta:
-        mdoel = PontoRecebimento
+        model = PontoRecebimento
         fields = '__all__'

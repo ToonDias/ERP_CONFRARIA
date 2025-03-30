@@ -7,6 +7,7 @@ from django.views.generic import DetailView
 from django.views.generic import DeleteView
 
 from .models import PlanoContas
+from .models import PontoRecebimento
 
 from .forms import FormPlanoContas
 from .forms import FormPontoRecebimento
@@ -41,6 +42,36 @@ class PlanoContasDeleteView(DeleteView):
     model = PlanoContas
     template_name = 'financeiro/plano_contas/delete.html'
     success_url = reverse_lazy('listar_planos')
+
+# Ponto de recebimento Views
+
+class PontoRecebimentoListView(ListView):
+    model = PontoRecebimento
+    template_name = 'financeiro/ponto_recebimento/list.html'
+    context_object_name = 'pontos'
+
+class PontoRecebimentoCreateView(CreateView):
+    model = PontoRecebimento
+    form_class = FormPontoRecebimento
+    template_name = 'financeiro/ponto_recebimento/create.html'
+    success_url = reverse_lazy('listar_pontos')
+
+class PontoRecebimentoUpdateView(UpdateView):
+    model = PontoRecebimento
+    form_class = FormPontoRecebimento
+    template_name = 'financeiro/ponto_recebimento/update.html'
+    success_url = reverse_lazy('listar_pontos')
+
+class PontoRecebimentoDetailViews(DetailView):
+    model = PontoRecebimento
+    template_name = 'financeiro/ponto_recebimento/details.html'
+    context_object_name = 'ponto'
+
+class PontoRecebimentoDeleteView(DeleteView):
+    model = PontoRecebimento
+    template_name = 'financeiro/ponto_recebimento/delete.html'
+    success_url = reverse_lazy('listar_pontos')
+
 
 def CadastrarFuncionario(request):
     return render(request, 'financeiro/cadastrar_funcionario.html', context={})
