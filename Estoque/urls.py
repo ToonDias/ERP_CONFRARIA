@@ -26,11 +26,12 @@ urlpatterns = [
     path('local-estoque/atualizar/<int:pk>', views.LocalEstoqueUpdateView.as_view(), name='editar_local'),
     path('local-estoque/detalhes/<int:pk>', views.LocalEstoqueDetailView.as_view(), name='detalhes_local'),
     path('local-estoque/deletar/<int:pk>', views.LocalEstoqueDeleteView.as_view(), name='deletar_local'),
+    # urls Produto
+    path('produto/', views.ProdutoListView.as_view(), name='listar_produtos'),
+    path('produto/adicionar', views.ProdutoCreateViews.as_view(), name='novo_produto'),
+    path('produto/atualizar/<int:pk>', views.ProdutoUpdateViews.as_view(), name='editar_produto'),
+    path('produto/detalhes/<int:pk>', views.ProdutoDetailView.as_view(), name='detalhes_produto'),
+    path('produto/detelar/<int:pk>', views.ProdutoDeleteView.as_view(), name='detelar_produto'),
     #urls outros
-    path('cadastrar/fornecedor', views.CadastrarFornecedor, name='cadastrar_fornecedor'),
-    path('cadastrar/unidade', views.CadastrarUnidade, name='cadastrar_unidade'),
-    path('cadastrar/fabricante', views.CadastrarFabricante, name='cadastrar_fabricante'),
-    path('cadastrar/produto', views.CadastrarProduto.as_view(), name='cadastrar_produto'),
     path('cadastrar/lote', views.CadastrarLote, name='cadastrar_lote'),
-    path('cadastrar/local-estoque', views.CadastrarLocalEstoque, name='cadastrar_local_estoque'),
 ]

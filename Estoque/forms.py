@@ -3,6 +3,7 @@ from .models import Categoria
 from .models import Fabricante
 from .models import Unidade
 from .models import LocalEstoque
+from .models import Produto
 
 class FormCategoria(forms.ModelForm):
     class Meta:
@@ -22,4 +23,9 @@ class FormUnidade(forms.ModelForm):
 class FormLocalEstoque(forms.ModelForm):
     class Meta:
         model = LocalEstoque
+        fields = '__all__'
+
+class FormProduto(forms.ModelForm):
+    class Meta:
+        model = Produto
         fields = '__all__'

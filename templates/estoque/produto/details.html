@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}
+    Unidades | Detalhes
+{% endblock %}
+
+{% block 'content-main' %}
+<div class="container mt-5">
+    <!-- Card Externo com borda suave e sombra média -->
+    <div class="card shadow-lg border-light rounded-3">
+        <div class="card-header text-center bg-success text-white">
+            <h3>Detalhes da Unidades: <strong>{{ unidade.descricao }}</strong></h3>
+        </div>
+        <div class="card-body">
+            <!-- Informações da Unidades -->
+            <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
+                <dl class="row mb-4">
+                    <dt class="col-sm-3"><strong>Descrição:</strong></dt>
+                    <dd class="col-sm-9">{{ unidade.descricao }}</dd>
+                </dl>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="row">
+                <div class="col-8">
+                    <a href="{% url 'editar_unidade' unidade.pk %}" class="btn btn-primary px-4 py-2">Editar</a>
+                    <a href="{% url 'listar_unidades' %}" class="btn btn-secondary px-4 py-2">Voltar</a>
+                </div>
+                <div class="col-4 text-end">
+                    <a href="{% url 'deletar_unidade' unidade.pk %}" class="btn btn-danger px-4 py-2">Deletar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fim do Card Externo -->
+</div>
+{% endblock %}

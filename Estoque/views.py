@@ -10,6 +10,7 @@ from .forms import FormCategoria
 from .forms import FormFabricante
 from .forms import FormUnidade
 from .forms import FormLocalEstoque
+from .forms import FormProduto
 
 # Create your views here.
 from .models import Categoria
@@ -134,36 +135,35 @@ class LocalEstoqueDeleteView(DeleteView):
     template_name = 'estoque/local_estoque/delete.html'
     success_url = reverse_lazy('listar_locais')
 
-
 #Views Produto
 
-class CadastrarProduto(ListView):
+class ProdutoListView(ListView):
     model = Produto
-    template_name = 'estoque/cadastrar_produto.html'
+    template_name = 'estoque/produto/list.html'
     context_object_name = 'produtos'
 
-def CadastrarCategoria(request):
-    from .models import Categoria
+class ProdutoCreateViews(CreateView):
+    model = Produto
+    form_class = FormProduto
+    template_name = 'estoque/produto/create.html'
+    success_url = reverse_lazy('listar_produtos')
 
-    categorias = Categoria.objects.all()
+class ProdutoUpdateViews(UpdateView):
+    model = Produto
+    form_class = FormProduto
+    template_name = 'estoque/produto/update.html'
+    success_url = reverse_lazy('listar_produtos')
 
-    context = {
-        'categorias': categorias
-    }
+class ProdutoDetailView(DetailView):
+    model = Produto
+    template_name = 'estoque/produto/details.html'
+    context_object_name = 'produto'
 
-    return render(request, 'estoque/cadastrar_categoria.html', context)
+class ProdutoDeleteView(DeleteView):
+    model = Produto
+    template_name = 'estoque/produto/delete.html'
+    success_url = reverse_lazy('listar_produtos')
 
-def CadastrarFabricante(request):
-    return render(request, 'estoque/cadastrar_fabricante.html', context={})
-
-def CadastrarFornecedor(request):
-    return render(request, 'estoque/cadastrar_fornecedor.html', context={})
-
-def CadastrarUnidade(request):
-    return render(request, 'estoque/cadastrar_unidade.html', context={})
 
 def CadastrarLote(request):
     return render(request, 'estoque/cadastrar_lote.html', context={})
-
-def CadastrarLocalEstoque(request):
-    return render(request, 'estoque/cadastrar_local_estoque.html', context={})
