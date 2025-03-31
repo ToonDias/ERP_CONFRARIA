@@ -134,6 +134,7 @@ class LocalEstoqueDeleteView(DeleteView):
     template_name = 'estoque/local_estoque/delete.html'
     success_url = reverse_lazy('listar_locais')
 
+
 #Views Produto
 
 class CadastrarProduto(ListView):

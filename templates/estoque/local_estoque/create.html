@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block 'title' %}
-    Unidade | Cadastro
+    Local de estoque | Cadastro
 {% endblock %}
 
 {% block 'content-main' %}
@@ -9,15 +9,15 @@
   <!-- Card Externo com borda suave e sombra -->
   <div class="card shadow-lg border-light rounded-3">
     <div class="card-header text-center bg-success text-white">
-      <h3>Cadastrar Unidade</h3>
+      <h3>Cadastrar Local de estoque</h3>
     </div>
     <div class="card-body">
       <form method="POST" novalidate>
         {% csrf_token %}
         
-        <!-- Sessão Unidade -->
+        <!-- Sessão Local de estoque -->
         <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
-          <h4 class="mb-3 text-success">Informações da Unidade</h4>
+          <h4 class="mb-3 text-success">Informações da Local de estoque</h4>
           <div class="row">
             <div class="col-md-12">
               <div class="mb-3">
@@ -32,13 +32,51 @@
                 {% endif %}
                 <div class="valid-feedback">Looks good!</div>
               </div>
+              
+              <div class="mb-3 form-check">
+                <input type="checkbox" 
+                       name="ativo" 
+                       class="form-check-input {% if form.ativo.errors %}is-invalid{% endif %}" 
+                       id="{{ form.ativo.id_for_label }}" 
+                       {% if form.ativo.value %}checked{% endif %}>
+                <label class="form-check-label" for="{{ form.ativo.id_for_label }}">
+                  <strong>Ativo?</strong>
+                </label>
+                {% if form.ativo.errors %}
+                  <div class="invalid-feedback">
+                    {% for error in form.ativo.errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                <div class="valid-feedback">Looks good!</div>
+              </div>
+
+              <div class="mb-3 form-check">
+                <input type="checkbox" 
+                       name="aviso_estoque" 
+                       class="form-check-input {% if form.aviso_estoque.errors %}is-invalid{% endif %}" 
+                       id="{{ form.aviso_estoque.id_for_label }}" 
+                       {% if form.aviso_estoque.value %}checked{% endif %}>
+                <label class="form-check-label" for="{{ form.aviso_estoque.id_for_label }}">
+                  <strong>Estoque mínimo?</strong>
+                </label>
+                {% if form.aviso_estoque.errors %}
+                  <div class="invalid-feedback">
+                    {% for error in form.aviso_estoque.errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                <div class="valid-feedback">Looks good!</div>
+              </div>
             </div>
            </div>
         </div>
         <!-- Botões de Ação -->
         <div class="d-flex justify-content-between mt-4">
           <button type="submit" class="btn btn-success shadow-sm px-4 py-2">Salvar</button>
-          <a href="{% url 'listar_unidades' %}" class="btn btn-secondary shadow-sm px-4 py-2">Cancelar</a>
+          <a href="{% url 'listar_locais' %}" class="btn btn-secondary shadow-sm px-4 py-2">Cancelar</a>
         </div>
       </form>
     </div>

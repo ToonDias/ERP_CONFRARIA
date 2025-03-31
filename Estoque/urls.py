@@ -20,6 +20,12 @@ urlpatterns = [
     path('undiade/atualizar/<int:pk>', views.UnidadeUpdateView.as_view(), name='editar_unidade'),
     path('unidade/detalhes/<int:pk>', views.UnidadeDetailView.as_view(), name='detalhes_unidade'),
     path('unidade/delete/<int:pk>', views.UnidadeDeleteView.as_view(), name='deletar_unidade'),
+    # urls Local de estoque
+    path('local-estoque/', views.LocalEstoqueListView.as_view(), name='listar_locais'),
+    path('local-estoque/adicionar', views.LocalEstoqueCreateView.as_view(), name='novo_local'),
+    path('local-estoque/atualizar/<int:pk>', views.LocalEstoqueUpdateView.as_view(), name='editar_local'),
+    path('local-estoque/detalhes/<int:pk>', views.LocalEstoqueDetailView.as_view(), name='detalhes_local'),
+    path('local-estoque/deletar/<int:pk>', views.LocalEstoqueDeleteView.as_view(), name='deletar_local'),
     #urls outros
     path('cadastrar/fornecedor', views.CadastrarFornecedor, name='cadastrar_fornecedor'),
     path('cadastrar/unidade', views.CadastrarUnidade, name='cadastrar_unidade'),
