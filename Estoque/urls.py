@@ -17,7 +17,7 @@ urlpatterns = [
     # urls Unidade
     path('unidades/', views.UnidadeListView.as_view(), name='listar_unidades'),
     path('unidade/adicionar', views.UnidadeCreateView.as_view(), name='nova_unidade'),
-    path('undiade/atualizar/<int:pk>', views.UnidadeUpdateView.as_view(), name='editar_unidade'),
+    path('unidade/atualizar/<int:pk>', views.UnidadeUpdateView.as_view(), name='editar_unidade'),
     path('unidade/detalhes/<int:pk>', views.UnidadeDetailView.as_view(), name='detalhes_unidade'),
     path('unidade/delete/<int:pk>', views.UnidadeDeleteView.as_view(), name='deletar_unidade'),
     # urls Local de estoque
@@ -31,7 +31,7 @@ urlpatterns = [
     path('produto/adicionar', views.ProdutoCreateViews.as_view(), name='novo_produto'),
     path('produto/atualizar/<int:pk>', views.ProdutoUpdateViews.as_view(), name='editar_produto'),
     path('produto/detalhes/<int:pk>', views.ProdutoDetailView.as_view(), name='detalhes_produto'),
-    path('produto/detelar/<int:pk>', views.ProdutoDeleteView.as_view(), name='detelar_produto'),
+    path('produto/detelar/<int:pk>', views.ProdutoDeleteView.as_view(), name='deletar_produto'),
     #urls outros
     path('cadastrar/lote', views.CadastrarLote, name='cadastrar_lote'),
 ]
