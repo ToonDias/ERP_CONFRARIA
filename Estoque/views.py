@@ -9,11 +9,13 @@ from django.views.generic import DetailView
 from .forms import FormCategoria
 from .forms import FormFabricante
 from .forms import FormUnidade
+from .forms import FormLocalEstoque
 
 # Create your views here.
 from .models import Categoria
 from .models import Fabricante
 from .models import Unidade
+from .models import LocalEstoque
 from .models import Produto
 
 
@@ -102,6 +104,35 @@ class UnidadeDeleteView(DeleteView):
     model = Unidade
     template_name = 'estoque/unidade/delete.html'
     success_url = reverse_lazy('listar_unidades')
+
+# Views LocalEstoque
+
+class LocalEstoqueListView(ListView):
+    model = LocalEstoque
+    template_name = 'estoque/local_estoque/list.html'
+    context_object_name = 'locais'
+
+class LocalEstoqueCreateView(CreateView):
+    model = LocalEstoque
+    form_class = FormLocalEstoque
+    template_name = 'estoque/local_estoque/create.html'
+    success_url = reverse_lazy('listar_locais')
+
+class LocalEstoqueUpdateView(UpdateView):
+    model = LocalEstoque
+    form_class = FormLocalEstoque
+    template_name = 'estoque/local_estoque/update.html'
+    success_url = reverse_lazy('listar_locais')
+
+class LocalEstoqueDetailView(DetailView):
+    model = LocalEstoque
+    template_name = 'estoque/local_estoque/details.html'
+    context_object_name = 'local'
+
+class LocalEstoqueDeleteView(DeleteView):
+    model = LocalEstoque
+    template_name = 'estoque/local_estoque/delete.html'
+    success_url = reverse_lazy('listar_locais')
 
 #Views Produto
 
