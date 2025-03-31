@@ -11,6 +11,7 @@ from .forms import FormFabricante
 from .forms import FormUnidade
 from .forms import FormLocalEstoque
 from .forms import FormProduto
+from .forms import FormLote
 
 # Create your views here.
 from .models import Categoria
@@ -18,6 +19,7 @@ from .models import Fabricante
 from .models import Unidade
 from .models import LocalEstoque
 from .models import Produto
+from .models import Lote
 
 
 # Views Categoria
@@ -164,6 +166,31 @@ class ProdutoDeleteView(DeleteView):
     template_name = 'estoque/produto/delete.html'
     success_url = reverse_lazy('listar_produtos')
 
+# Views Lote
 
-def CadastrarLote(request):
-    return render(request, 'estoque/cadastrar_lote.html', context={})
+class LoteListView(ListView):
+    model = Lote
+    template_name = 'estoque/lote/list.html'
+    context_object_name = 'lotes'
+
+class LoteCreateView(CreateView):
+    model = Lote
+    form_class = FormLote
+    template_name = 'estoque/lote/create.html'
+    success_url = reverse_lazy('listar_lotes')
+
+class LoteUpdateView(UpdateView):
+    model = Lote
+    form_class = FormLote
+    template_name = 'estoque/lote/update.html'
+    success_url = reverse_lazy('listar_lotes')
+
+class LoteDetailView(DetailView):
+    model = Lote
+    template_name = 'estoque/lote/details.html'
+    context_object_name = 'lote'
+
+class LoteDeleteView(DeleteView):
+    model = Lote
+    template_name = 'estoque/lote/delete.html'
+    success_url = reverse_lazy('listar_lotes')
