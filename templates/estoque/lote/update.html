@@ -9,17 +9,16 @@
   <!-- Card Externo com borda suave e sombra -->
   <div class="card shadow-lg border-light rounded-3">
     <div class="card-header text-center bg-success text-white">
-      <h3>Cadastrar Produto</h3>
+      <h3>Cadastrar Lote</h3>
     </div>
     <div class="card-body">
       <form method="POST" novalidate>
         {% csrf_token %}
-        <!-- Sessão Produto -->
+        <!-- Sessão Lote -->
         <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
-          <h4 class="mb-3 text-success">Informações do Produto</h4>
+          <h4 class="mb-3 text-success">Informações do Lote</h4>
           <div class="row">
             <div class="col-md-12">
-
               <div class="col-md-12">
                 <div class="mb-3">
                   <label for="{{ form.codigo.id_for_label }}" class="form-label"><strong>Código</strong></label>
@@ -37,47 +36,17 @@
 
               <div class="col-md-12">
                 <div class="mb-3">
-                  <label for="{{ form.descricao.id_for_label }}" class="form-label"><strong>Descrição</strong></label>
-                  <input type="text" name="descricao" class="form-control shadow-sm {% if form.descricao.errors %}is-invalid{% endif %}" id="{{ form.descricao.id_for_label }}" value="{{ form.descricao.value|default:'' }}" required>
-                  {% if form.descricao.errors %}
-                    <div class="invalid-feedback">
-                      {% for error in form.descricao.errors %}
-                        <p>{{ error }}</p>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-                  <div class="valid-feedback">Looks good!</div>
-                </div>
-              </div>
-
-              <div class="col-md-12">
-                <div class="mb-3">
-                  <label for="{{ form.detalhes.id_for_label }}" class="form-label"><strong>Detalhes</strong></label>
-                  <textarea rows="3" name="detalhes" class="form-control shadow-sm {% if form.detalhes.errors %}is-invalid{% endif %}" id="{{ form.detalhes.id_for_label }}" value="{{ form.detalhes.value|default:'' }}" required></textarea>
-                  {% if form.detalhes.errors %}
-                    <div class="invalid-feedback">
-                      {% for error in form.detalhes.errors %}
-                        <p>{{ error }}</p>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-                  <div class="valid-feedback">Looks good!</div>
-                </div>
-              </div>
-
-              <div class="col-md-12">
-                <div class="mb-3">
-                  <label for="{{ form.categoria.id_for_label }}" class="form-label"><strong>Categoria</strong></label>
-                  <select name="categoria" class="form-select shadow-sm {% if form.categoria.errors %}is-invalid{% endif %}" id="{{ form.categoria.id_for_label }}" required>
-                      {% for value, label in form.categoria.field.choices %}
-                          <option value="{{ value }}" {% if form.categoria.value == value %} selected {% endif %}>
+                  <label for="{{ form.produto.id_for_label }}" class="form-label"><strong>Produto</strong></label>
+                  <select name="produto" class="form-select shadow-sm {% if form.produto.errors %}is-invalid{% endif %}" id="{{ form.produto.id_for_label }}" required>
+                      {% for value, label in form.produto.field.choices %}
+                          <option value="{{ value }}" {% if form.produto.value == value %} selected {% endif %}>
                               {{ label }}
                           </option>
                       {% endfor %}
                   </select>
-                  {% if form.categoria.errors %}
+                  {% if form.produto.errors %}
                       <div class="invalid-feedback">
-                          {% for error in form.categoria.errors %}
+                          {% for error in form.produto.errors %}
                               <p>{{ error }}</p>
                           {% endfor %}
                       </div>
@@ -88,17 +57,17 @@
 
               <div class="col-md-12">
                 <div class="mb-3">
-                  <label for="{{ form.fabricante.id_for_label }}" class="form-label"><strong>Fabricante</strong></label>
-                  <select name="fabricante" class="form-select shadow-sm {% if form.fabricante.errors %}is-invalid{% endif %}" id="{{ form.fabricante.id_for_label }}" required>
-                      {% for value, label in form.fabricante.field.choices %}
-                          <option value="{{ value }}" {% if form.fabricante.value == value %} selected {% endif %}>
+                  <label for="{{ form.fornecedor.id_for_label }}" class="form-label"><strong>Fornecedor</strong></label>
+                  <select name="fornecedor" class="form-select shadow-sm {% if form.fornecedor.errors %}is-invalid{% endif %}" id="{{ form.fornecedor.id_for_label }}" required>
+                      {% for value, label in form.fornecedor.field.choices %}
+                          <option value="{{ value }}" {% if form.fornecedor.value == value %} selected {% endif %}>
                               {{ label }}
                           </option>
                       {% endfor %}
                   </select>
-                  {% if form.fabricante.errors %}
+                  {% if form.fornecedor.errors %}
                       <div class="invalid-feedback">
-                          {% for error in form.fabricante.errors %}
+                          {% for error in form.fornecedor.errors %}
                               <p>{{ error }}</p>
                           {% endfor %}
                       </div>
@@ -107,49 +76,92 @@
                 </div>
               </div>
 
-              <div class="col-md-12">
-                <div class="mb-3">
-                  <label for="{{ form.unidade.id_for_label }}" class="form-label"><strong>Unidade</strong></label>
-                  <select name="unidade" class="form-select shadow-sm {% if form.unidade.errors %}is-invalid{% endif %}" id="{{ form.unidade.id_for_label }}" required>
-                      {% for value, label in form.unidade.field.choices %}
-                          <option value="{{ value }}" {% if form.unidade.value == value %} selected {% endif %}>
-                              {{ label }}
-                          </option>
-                      {% endfor %}
-                  </select>
-                  {% if form.unidade.errors %}
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="{{ form.custo.id_for_label }}" class="form-label"><strong>Preço de custo</strong></label>
+                    <input type="number" name="custo" class="form-control shadow-sm {% if form.custo.errors %}is-invalid{% endif %}" id="{{ form.custo.id_for_label }}" value="{{ form.custo.value|default:'' }}" required>
+                    {% if form.custo.errors %}
                       <div class="invalid-feedback">
-                          {% for error in form.unidade.errors %}
-                              <p>{{ error }}</p>
-                          {% endfor %}
+                        {% for error in form.custo.errors %}
+                          <p>{{ error }}</p>
+                        {% endfor %}
                       </div>
-                  {% endif %}
-                  <div class="valid-feedback">Looks good!</div>
+                    {% endif %}
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
                 </div>
+  
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="{{ form.preco_venda.id_for_label }}" class="form-label"><strong>Preço de venda</strong></label>
+                    <input type="number" name="preco_venda" class="form-control shadow-sm {% if form.preco_venda.errors %}is-invalid{% endif %}" id="{{ form.preco_venda.id_for_label }}" value="{{ form.preco_venda.value|default:'' }}" required>
+                    {% if form.preco_venda.errors %}
+                      <div class="invalid-feedback">
+                        {% for error in form.preco_venda.errors %}
+                          <p>{{ error }}</p>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                </div>
+  
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="{{ form.quantidade.id_for_label }}" class="form-label"><strong>Quantidade</strong></label>
+                    <input type="number" name="quantidade" class="form-control shadow-sm {% if form.quantidade.errors %}is-invalid{% endif %}" id="{{ form.quantidade.id_for_label }}" value="{{ form.quantidade.value|default:'' }}" required>
+                    {% if form.quantidade.errors %}
+                      <div class="invalid-feedback">
+                        {% for error in form.quantidade.errors %}
+                          <p>{{ error }}</p>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                </div>
+
               </div>
 
-              <div class="col-md-12">
-                <div class="mb-3">
-                  <label for="{{ form.imagem.id_for_label }}" class="form-label"><strong>Imagem</strong></label>
-                  <input type="file" name="imagem" class="form-control shadow-sm {% if form.imagem.errors %}is-invalid{% endif %}" id="{{ form.imagem.id_for_label }}" value="{{ form.imagem.value|default:'' }}" required>
-                  {% if form.imagem.errors %}
-                    <div class="invalid-feedback">
-                      {% for error in form.imagem.errors %}
-                        <p>{{ error }}</p>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-                  <div class="valid-feedback">Looks good!</div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="{{ form.data_cadastro.id_for_label }}" class="form-label"><strong>Data cadastro</strong></label>
+                    <input type="date" name="data_cadastro" class="form-control shadow-sm {% if form.data_cadastro.errors %}is-invalid{% endif %}" id="{{ form.data_cadastro.id_for_label }}" value="{{ form.data_cadastro.value|default:'' }}" required>
+                    {% if form.data_cadastro.errors %}
+                      <div class="invalid-feedback">
+                        {% for error in form.data_cadastro.errors %}
+                          <p>{{ error }}</p>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="{{ form.data_vencimento.id_for_label }}" class="form-label"><strong>Data vencimento</strong></label>
+                    <input type="date" name="data_vencimento" class="form-control shadow-sm {% if form.data_vencimento.errors %}is-invalid{% endif %}" id="{{ form.data_vencimento.id_for_label }}" value="{{ form.data_vencimento.value|default:'' }}" required>
+                    {% if form.data_vencimento.errors %}
+                      <div class="invalid-feedback">
+                        {% for error in form.data_vencimento.errors %}
+                          <p>{{ error }}</p>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
                 </div>
               </div>
-
             </div>
            </div>
         </div>
         <!-- Botões de Ação -->
         <div class="d-flex justify-content-between mt-4">
           <button type="submit" class="btn btn-success shadow-sm px-4 py-2">Salvar</button>
-          <a href="{% url 'listar_produtos' %}" class="btn btn-secondary shadow-sm px-4 py-2">Cancelar</a>
+          <a href="{% url 'listar_lotes' %}" class="btn btn-secondary shadow-sm px-4 py-2">Cancelar</a>
         </div>
       </form>
     </div>
