@@ -33,5 +33,9 @@ urlpatterns = [
     path('produto/detalhes/<int:pk>', views.ProdutoDetailView.as_view(), name='detalhes_produto'),
     path('produto/detelar/<int:pk>', views.ProdutoDeleteView.as_view(), name='deletar_produto'),
     #urls outros
-    path('cadastrar/lote', views.CadastrarLote, name='cadastrar_lote'),
+    path('lote/', views.LoteListView.as_view(), name='listar_lotes'),
+    path('lote/adicionar', views.LoteCreateView.as_view(), name='novo_lote'),
+    path('lote/atualizar/<int:pk>', views.LoteUpdateView.as_view(), name='editar_lote'),
+    path('lote/detalhes/<int:pk>', views.LoteDetailView.as_view(), name='detalhes_lote'),
+    path('lote/deletar/<int:pk>', views.LoteDeleteView.as_view(), name='deletar_lote'),
 ]
