@@ -32,10 +32,16 @@ urlpatterns = [
     path('produto/atualizar/<int:pk>', views.ProdutoUpdateViews.as_view(), name='editar_produto'),
     path('produto/detalhes/<int:pk>', views.ProdutoDetailView.as_view(), name='detalhes_produto'),
     path('produto/detelar/<int:pk>', views.ProdutoDeleteView.as_view(), name='deletar_produto'),
-    #urls outros
+    #urls Lotes
     path('lote/', views.LoteListView.as_view(), name='listar_lotes'),
     path('lote/adicionar', views.LoteCreateView.as_view(), name='novo_lote'),
     path('lote/atualizar/<int:pk>', views.LoteUpdateView.as_view(), name='editar_lote'),
     path('lote/detalhes/<int:pk>', views.LoteDetailView.as_view(), name='detalhes_lote'),
     path('lote/deletar/<int:pk>', views.LoteDeleteView.as_view(), name='deletar_lote'),
+    #urls Fornecedor
+    path('fornecedor/', views.FornecedorListView.as_view(), name='listar_fornecedores'),
+    path('fornecedor/adicionar', views.FornecedorCreateView.as_view(), name='novo_fornecedor'),
+    path('fornecedor/editar/<int:pk>', views.FornecedorUpdateView.as_view(), name='editar_fornecedor'),
+    path('fornecedor/detalhes/<int:pk>', views.FornecedorDetailView.as_view(), name='detalhes_fornecedor'),
+    path('fornecedor/deletar/<int:pk>', views.FornecedorDeleteView.as_view(), name='deletar_fornecedor'),   
 ]
