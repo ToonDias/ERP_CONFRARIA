@@ -12,6 +12,7 @@ from .forms import FormUnidade
 from .forms import FormLocalEstoque
 from .forms import FormProduto
 from .forms import FormLote
+from .forms import FormFornecedor
 
 # Create your views here.
 from .models import Categoria
@@ -20,6 +21,7 @@ from .models import Unidade
 from .models import LocalEstoque
 from .models import Produto
 from .models import Lote
+from .models import Fornecedor
 
 
 # Views Categoria
@@ -194,3 +196,32 @@ class LoteDeleteView(DeleteView):
     model = Lote
     template_name = 'estoque/lote/delete.html'
     success_url = reverse_lazy('listar_lotes')
+
+# Fornecedor Views
+
+class FornecedorListView(ListView):
+    model = Fornecedor
+    template_name = 'estoque/fornecedor/list.html'
+    context_object_name = 'fornecedores'
+
+class FornecedorCreateView(CreateView):
+    model = Fornecedor
+    form_class = FormFornecedor
+    template_name = 'estoque/fornecedor/create.html'
+    success_url = reverse_lazy('listar_fornecedores')
+
+class FornecedorUpdateView(UpdateView):
+    model = Fornecedor
+    form_class = FormFornecedor
+    template_name = 'estoque/fornecedor/updade.html'
+    success_url = reverse_lazy('listar_fornecedores')
+
+class FornecedorDetailView(DetailView):
+    model = Fornecedor
+    template_name = 'estoque/fornecedor/details.html'
+    context_object_name = 'fornecedor'
+
+class FornecedorDeleteView(DeleteView):
+    model = Fornecedor
+    template_name = 'estoque/fornecedor/delete.html'
+    success_url = reverse_lazy('listar_fornecedores')
