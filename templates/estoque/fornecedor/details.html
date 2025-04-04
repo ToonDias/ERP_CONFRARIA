@@ -9,35 +9,30 @@
     <!-- Card Externo com borda suave e sombra média -->
     <div class="card shadow-lg border-light rounded-3">
         <div class="card-header text-center bg-success text-white">
-            <h3>Detalhes do Fornecedor: <strong>{{ fornecedore.codigo }}</strong></h3>
+            <h3>Detalhes do Fornecedor: <strong>{{ fornecedor.razao_social }}</strong></h3>
         </div>
         <div class="card-body">
             <!-- Informações da Unidades -->
             <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
                 <dl class="row mb-4">
                     <dt class="col-sm-3"><strong>Razão Social:</strong></dt>
-                    <dd class="col-sm-9">{{ fornecedore.codigo }}</dd>
+                    <dd class="col-sm-9">{{ fornecedor.razao_social }}</dd>
 
-                    <dt class="col-sm-3"><strong>Produto:</strong></dt>
-                    <dd class="col-sm-9">{{ fornecedore.produto }}</dd>
+                    <dt class="col-sm-3"><strong>Nome Fantasia:</strong></dt>
+                    <dd class="col-sm-9">{{ fornecedor.nome_fantasia }}</dd>
                     
-                    <dt class="col-sm-3"><strong>Fornecedor:</strong></dt>
-                    <dd class="col-sm-9">{{ fornecedore.fornecedor }}</dd>
+                    <dt class="col-sm-3"><strong>CPF/CNPJ:</strong></dt>
+                    <dd class="col-sm-9">{{ fornecedor.cpf_cnpj }}</dd>
 
-                    <dt class="col-sm-3"><strong>Preço de custo:</strong></dt>
-                    <dd class="col-sm-9">{{ fornecedore.custo }}</dd>
+                    <dt class="col-sm-3"><strong>Responsável</strong></dt>
+                    <dd class="col-sm-9">{{ fornecedor.responsavel }}</dd>
 
-                    <dt class="col-sm-3"><strong>Preço de venda:</strong></dt>
-                    <dd class="col-sm-9">{{ fornecedore.preco_venda }}</dd>
+                    <dt class="col-sm-3"><strong>Contato:</strong></dt>
+                    <dd class="col-sm-9">{{ fornecedor.contato }}</dd>
 
-                    <dt class="col-sm-3"><strong>Quantidade:</strong></dt>
-                    <dd class="col-sm-9">{{ fornecedore.quantidade }}</dd>
+                    <dt class="col-sm-3"><strong>Email:</strong></dt>
+                    <dd class="col-sm-9">{{ fornecedor.email }}</dd>
 
-                    <dt class="col-sm-3"><strong>Data de cadastro:</strong></dt>
-                    <dd class="col-sm-9">{{ fornecedore.data_cadastro }}</dd>
-
-                    <dt class="col-sm-3"><strong>Data de vencimento:</strong></dt>
-                    <dd class="col-sm-9">{{ fornecedore.data_vencimento }}</dd>
                 </dl>
             </div>
 
