@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block 'title' %}
-    Estoque | Lotes
+    Estoque | Fornecedores
 {% endblock %}
 
 {% block 'content-main' %}
@@ -9,12 +9,12 @@
   <!-- Card Externo com borda suave e sombra -->
   <div class="card shadow-lg border-light rounded-3">
     <div class="card-header text-center bg-success text-white">
-      <h3>Lista de Lotes</h3>
+      <h3>Lista de Fornecedores</h3>
     </div>
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h4 class="mb-0">Lotes cadastrados</h4>
-        <a class="btn btn-success shadow-sm" role="button" href="{% url 'novo_lote' %}">Adicionar Lote</a>
+        <h4 class="mb-0">Fornecedores cadastrados</h4>
+        <a class="btn btn-success shadow-sm" role="button" href="{% url 'novo_fornecedor' %}">Adicionar Fornecedor</a>
       </div>
 
       <!-- Tabela de Unidades -->
@@ -23,33 +23,31 @@
             <thead>
               <tr>
                 <th scope="col" class="d-none d-md-table-cell">ID</th>
-                <th scope="col">Código</th>
-                <th scope="col">Produto</th>
-                <th scope="col" class="d-none d-md-table-cell">Custo</th>
-                <th scope="col" class="d-none d-md-table-cell">Preço venda</th>
-                <th scope="col">Vencimento</th>
+                <th scope="col" class="d-none d-md-table-cell">Razão Social</th>
+                <th scope="col">Nome Fantasia</th>
+                <th scope="col">CPF/CNPJ</th>
+                <th scope="col" class="d-none d-md-table-cell">Resposnavel</th>
                 <th scope="col" class="text-center">Ações</th>
               </tr>
             </thead>
             <tbody class="table-group-divider">
-              {% if lotes %}
-                {% for lote in lotes %}
+              {% if fornecedores %}
+                {% for fornecedor in fornecedores %}
                   <tr>
-                    <th scope="row" class="d-none d-md-table-cell">{{ lote.id }}</th>
-                    <td >{{ lote.codigo }}</td>
-                    <td>{{ lote.produto }}</td>
-                    <td class="d-none d-md-table-cell">{{ lote.custo }}</td>
-                    <td class="d-none d-md-table-cell">{{ lote.preco_venda }}</td>
-                    <td>{{ lote.data_vencimento }}</td>
+                    <th scope="row" class="d-none d-md-table-cell">{{ fornecedor.id }}</th>
+                    <td class="d-none d-md-table-cell">{{ fornecedor.razao_social }}</td>
+                    <td>{{ fornecedor.nome_fantasia }}</td>
+                    <td>{{ fornecedor.cpf_cnpj }}</td>
+                    <td class="d-none d-md-table-cell">{{ fornecedor.responsavel }}</td>
                     <td class="text-center">
                       <div class="btn-group">
-                        <a type="button" role="button" href="{% url 'detalhes_lote' pk=lote.id %}" class="btn btn-info">Detalhes</a>
+                        <a type="button" role="button" href="{% url 'detalhes_fornecedor' pk=fornecedor.id %}" class="btn btn-info">Detalhes</a>
                         <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                           <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="{% url 'editar_lote' pk=lote.id %}">Editar</a></li>
-                          <li><a class="dropdown-item" href="{% url 'deletar_lote' pk=lote.id %}">Deletar</a></li>
+                          <li><a class="dropdown-item" href="{% url 'editar_fornecedor' pk=fornecedor.id %}">Editar</a></li>
+                          <li><a class="dropdown-item" href="{% url 'deletar_fornecedor' pk=fornecedor.id %}">Deletar</a></li>
                         </ul>
                       </div>
                     </td>
