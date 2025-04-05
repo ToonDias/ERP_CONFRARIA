@@ -15,6 +15,7 @@ from .forms import FormItemPedido
 # Create your views here.
 
 # Pedido Views
+
 class PedidoListView(ListView):
     model = Pedido
     template_name = 'atendimento/pedido/list.html'
@@ -41,6 +42,35 @@ class PedidoDeleteView(DeleteView):
     model = Pedido
     template_name = 'atendmento/pedido/delete.html'
     success_url = reverse_lazy('listar_pedido')
+
+# ItemPedido Views
+
+class ItemPedidoListView(ListView):
+    model = ItemPedido
+    template_name = 'atendimento/item-pedido/list.html'
+    context_object_name = 'itens-pedidos'
+
+class ItemPedidoCreateView(CreateView):
+    model = ItemPedido
+    form_class = FormItemPedido
+    template_name = 'atendimento/item-pedido/create.html'
+    success_url = reverse_lazy('listar_itens')
+
+class ItemPedidoUpdateView(UpdateView):
+    model = ItemPedido
+    form_class = FormItemPedido
+    template_name = 'atendimento/item-pedido/update.html'
+    success_url = reverse_lazy('listar_itens')
+
+class ItemPedidoDetailView(DetailView):
+    model = ItemPedido
+    template_name = 'atendimento/item-pedido/details.html'
+    context_object_name = 'item'
+
+class ItemPedidoDeleteView(DeleteView):
+    model = ItemPedido
+    template_name = 'atendmento/item-pedido/delete.html'
+    success_url = reverse_lazy('listar_itens')
 
 
 
