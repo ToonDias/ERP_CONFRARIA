@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}
+    Lote | Deletar
+{% endblock %}
+
+{% block 'content-main' %}
+<div class="container mt-5">
+  <!-- Card Externo com borda suave e sombra -->
+  <div class="card shadow-lg border-light rounded-3">
+    <div class="card-header text-center bg-success text-white">
+      <h3>Deletar Lote: <strong>{{ lote.codigo }}</strong></h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Tem certeza que deseja excluir este lote?</strong></p>
+
+      <!-- Informações da Lote com borda e sombra -->
+      <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
+        <h4 class="mb-3 text-success">Informações do Lote</h4>
+        <p><strong>Código:</strong> {{ lote.codigo }}</p>
+        <p><strong>Produto:</strong> {{ lote.produto }}</p>
+        <p><strong>Fornecedor:</strong> {{ lote.fornecedor }}</p>
+        <p><strong>Preço de custo:</strong> {{ lote.custo }}</p>
+        <p><strong>Preço de venda:</strong> {{ lote.preco_venda }}</p>
+        <p><strong>Quantidade:</strong> {{ lote.quantidade }}</p>
+        <p><strong>Data de cadastro:</strong> {{ lote.data_cadastro }}</p>
+        <p><strong>Data de vencimento:</strong> {{ lote.data_vencimento }}</p>
+      </div>
+
+      <!-- Botões de Ação -->
+      <form method="post">
+        {% csrf_token %}
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-danger shadow-sm px-4 py-2">Sim, excluir</button>
+          <a href="{% url 'listar_lotes' %}" class="btn btn-secondary shadow-sm px-4 py-2">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Fim do Card Externo -->
+</div>
+{% endblock %}
