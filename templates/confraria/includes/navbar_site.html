@@ -1,9 +1,107 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-tema">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="{% static '/img/logo2.png' %}" alt="" width="40" height="40">
-    </a>
-  </div>
+<nav class="navbar navbar-light navbar-expand-lg navbar-tema border-bottom">
+    <div class="container-fluid">
+        <div class="row col-12 d-flex align-items-center justify-content-between mx-auto">
+            <!-- Logo e botão de toggle (centrado) -->
+            <div class="col-lg-2 d-flex justify-content-between mx-auto">
+                <a class="navbar-brand" href="{% url 'homepage' %}">
+                    <img src="{% static '/img/logo2.png' %}" alt="Logo" width="50" height="50">
+                </a>
+                <!-- Botão de toggle para telas menores -->
+                <button class="navbar-toggler d-xl-none bg-light text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <!-- Formulário de pesquisa e Área do cliente (visíveis em telas grandes) -->
+            <div class="col-md-8 d-none d-lg-flex justify-content-center">
+                <form role="search">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input class="form-control" type="search" placeholder="Pesquisar produto" aria-label="Pesquisar">
+                        <button class="btn btn-outline-light" type="submit">Pesquisar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Área do Cliente (visível em telas grandes) -->
+            <div class="col-md-2 d-none d-lg-flex justify-content-end">
+                <a class="btn btn-outline-light d-flex align-items-center" href="#">
+                    <i class="bi bi-person-circle me-2" style="font-size: 1.5rem;"></i>Área do Cliente
+                </a>
+            </div>
+        </div>
+    </div>
 </nav>
-  
+
+<!-- Navbar Secundária (aparece em telas grandes e pequenas com toggle) -->
+<nav class="navbar navbar-expand-lg navbar-tema">
+    <div class="container">
+        <!-- Itens do Menu -->
+        <div class="collapse navbar-collapse mx-auto" id="navbarNavDropdown">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Todos os itens</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Veganos
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">#</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Zero Açúcar
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">#</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Zero Lactose
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">#</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Proteicos
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">#</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Drageados e Snacks
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">#</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Páscoa e Presentes
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">#</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown d-lg-none">
+                    <a class="nav-link text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle me-2"></i>Área do Cliente
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Link para os ícones do Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
