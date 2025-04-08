@@ -22,7 +22,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.Site, name='homepage'),
+    path('', views.homepage, name='homepage'),
+    path('cliente/', views.clientepage, name='clientepage'),
     path('admin/', admin.site.urls),
     path('estoque/', include('Estoque.urls')),
     path('cliente/', include('Cliente.urls')),
