@@ -5,3 +5,6 @@ def homepage(request):
 
 def clientepage(request):
     return render(request, 'confraria/cliente.html', context={})
+
+def itensallpage(request):
+    return render(request, 'confraria/itens.html', context={})
