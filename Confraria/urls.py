@@ -23,9 +23,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     # URLS site
-    path('', views.HomePage, name='homepage'),
+    path('', views.HomePage, name='home_page'),
     path('confraria/todos/', views.ItensAll, name='itens_all_page'),
-    path('confraria/veganos/', views.ItensVeganos, name='itens_veganospage'),
+    path('confraria/veganos/', views.ItensVeganos, name='itens_veganos_page'),
     path('confraria/zero-acucar/', views.ItensZeroAcucar, name='itens_zero_acucar_page'),
     path('confraria/zero-lactose/', views.ItensZeroLactose, name='itens_zero_lactose_page'),
     path('confraria/proteicos/', views.ItensProteicos, name='itens_proteicos_page'),

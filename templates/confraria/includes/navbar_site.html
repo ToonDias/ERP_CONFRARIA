@@ -4,7 +4,7 @@
         <div class="row col-12 d-flex align-items-center justify-content-between mx-auto">
             <!-- Logo e botão de toggle (centrado) -->
             <div class="col-lg-2 d-flex justify-content-between mx-auto">
-                <a class="navbar-brand" href="{% url 'homepage' %}">
+                <a class="navbar-brand" href="{% url 'home_page' %}">
                     <img src="{% static '/img/logo2.png' %}" alt="Logo" width="50" height="50">
                 </a>
                 <!-- Botão de toggle para telas menores -->
@@ -28,7 +28,7 @@
 
             <!-- Área do Cliente (visível em telas grandes) -->
             <div class="col-md-2 d-none d-lg-flex justify-content-end">
-                <a class="btn btn-outline-light d-flex align-items-center" href="{% url 'clientepage' %}">
+                <a class="btn btn-outline-light d-flex align-items-center" href="{% url 'cliente_page' %}">
                     <i class="bi bi-person-circle me-2" style="font-size: 1.5rem;"></i>Cliente
                 </a>
             </div>
@@ -43,14 +43,14 @@
         <div class="collapse navbar-collapse mx-auto" id="navbarNavDropdown">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'itens_allpage' %}">Todos os itens</a>
+                    <a class="nav-link text-white" href="{% url 'itens_all_page' %}">Todos os itens</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Veganos
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">#</a></li>
+                        <li><a class="dropdown-item" href="{% url 'itens_veganos_page' %}">#</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -58,7 +58,7 @@
                         Zero Açúcar
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">#</a></li>
+                        <li><a class="dropdown-item" href="{% url 'itens_zero_acucar_page' %}">#</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -66,7 +66,7 @@
                         Zero Lactose
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">#</a></li>
+                        <li><a class="dropdown-item" href="{% url 'itens_zero_lactose_page' %}">#</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -74,7 +74,7 @@
                         Proteicos
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">#</a></li>
+                        <li><a class="dropdown-item" href="{% url 'itens_proteicos_page' %}">#</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -82,7 +82,7 @@
                         Drageados e Snacks
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">#</a></li>
+                        <li><a class="dropdown-item" href="{% url 'itens_drageados_snacks_page' %}">#</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -90,11 +90,11 @@
                         Páscoa e Presentes
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">#</a></li>
+                        <li><a class="dropdown-item" href="{% url 'itens_eventos_page' %}">#</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown d-lg-none">
-                    <a class="nav-link text-white" href="{% url 'clientepage' %}">
+                    <a class="nav-link text-white" href="{% url 'cliente_page' %}">
                         <i class="bi bi-person-circle me-2"></i>Área do Cliente
                     </a>
                 </li>
