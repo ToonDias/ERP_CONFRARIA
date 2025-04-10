@@ -22,9 +22,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.homepage, name='homepage'),
-    path('confraria/todos/', views.itensallpage, name='itens_allpage'),
-    path('cliente/', views.clientepage, name='clientepage'),
+    # URLS site
+    path('', views.HomePage, name='homepage'),
+    path('confraria/todos/', views.ItensAll, name='itens_all_page'),
+    path('confraria/veganos/', views.ItensVeganos, name='itens_veganospage'),
+    path('confraria/zero-acucar/', views.ItensZeroAcucar, name='itens_zero_acucar_page'),
+    path('confraria/zero-lactose/', views.ItensZeroLactose, name='itens_zero_lactose_page'),
+    path('confraria/proteicos/', views.ItensProteicos, name='itens_proteicos_page'),
+    path('confraria/drageados-snacks/', views.ItensDrageadosSnacks, name='itens_drageados_snacks_page'),
+    path('confraria/evento/', views.ItensEvento, name='itens_eventos_page'),
+        path('cliente/', views.ClientePage, name='cliente_page'),
+
+    # outras URLS
+
     path('admin/', admin.site.urls),
     path('estoque/', include('Estoque.urls')),
     path('cliente/', include('Cliente.urls')),
