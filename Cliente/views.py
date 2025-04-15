@@ -88,7 +88,7 @@ def cliente_search_view(request):
         if data_nascimento:
             resultados = resultados.filter(published_at__lte=data_nascimento)
     
-    return render(request, 'cliente/serch_clientes.hmlt', {
+    return render(request, 'cliente/cliente/serch_clientes.html', {
         'form': form,
         'resultados': resultados
     })

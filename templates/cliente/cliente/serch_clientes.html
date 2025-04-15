@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}
+    Clientes | Consultar
+{% endblock %}
+
+{% block 'content-main' %}
+<h2>Busca Avançada</h2>
+
+<form method="get">
+    {{ form.as_p }}
+    <button type="submit">Filtrar</button>
+</form>
+
+<hr>
+
+<h3>Resultados:</h3>
+<ul>
+  {% for resultado in resultados %}
+    <li>{{ resultado.nome }} - {{resultado.cpf_cnpj }} - {{ resultado.published_at }}</li>
+  {% empty %}
+    <li>Nenhum resultado encontrado.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
