@@ -71,11 +71,3 @@ class ItemPedidoDeleteView(DeleteView):
     model = ItemPedido
     template_name = 'atendmento/item-pedido/delete.html'
     success_url = reverse_lazy('listar_itens')
-
-
-
-def CadastrarPedido(request):
-    return render(request, 'atendimento/cadastrar_pedido.html', context={})
-
-def ConsultarPedido(request):
-    return render(request, 'atendimento/consultar_pedido.html', context={})
