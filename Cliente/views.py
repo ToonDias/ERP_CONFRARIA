@@ -8,6 +8,7 @@ from django.views.generic import DeleteView
 
 from .models import Cliente
 from .forms import FormCliente
+from .forms import ClienteFilterForm
 
 # Create your views here.
 
@@ -69,7 +70,28 @@ class PessoaJuridicaDeleteView(DeleteView):
     success_url = reverse_lazy('listar_pj')
 
 
+# Seach views clientes
 
+def cliente_search_view(request):
+    form = ClienteFilterForm(request.GET or None)
+    resultados = Cliente.objects.all()
+
+    if form.is_valid():
+        nome = form.cleaned_data.get('nome')
+        cpf_cnpj = form.cleaned_data.get('cpf_cnpj')
+        data_nascimento = form.cleaned_data.get('data_nascimento')
+
+        if nome:
+            resultados = resultados.filter(nome__icontains=nome)
+        if cpf_cnpj:
+            resultados = resultados.filter(cpf_cnpj__icontains=nome)
+        if data_nascimento:
+            resultados = resultados.filter(published_at__lte=data_nascimento)
+    
+    return render(request, 'cliente/serch_clientes.hmlt', {
+        'form': form,
+        'resultados': resultados
+    })
 
 def ConsultarCliente(request):
     return render(request,'cliente/consultar_clientes.html', context={})
