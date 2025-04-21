@@ -5,11 +5,98 @@
 {% endblock %}
 
 {% block 'content-main' %}
+<div class="container mt-5">
+  <div class="card shadow-lg border-light rounded-3">
+    <div class="card-header text-center bg-success text-white">
+      <h3>Buscar Cliente</h3>
+    </div>
+    <div class="card-body">
+      
+    </div>
+  </div>
+
+</div>
 <h2>Busca Avançada</h2>
 
-<form method="get">
-    {{ form.as_p }}
-    <button type="submit">Filtrar</button>
+<form method="GET" novalidate>
+  {% csrf_token %}
+
+  <!-- Sessão Cliente -->
+  <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
+    <h4 class="mb-3 text-success">Consultar Cliente</h4>
+    <div class="row">
+
+      <!-- Nome -->
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label for="{{ form.nome.id_for_label }}" class="form-label"><strong>Nome</strong></label>
+          <input type="text" name="nome" class="form-control shadow-sm {% if form.nome.errors %}is-invalid{% endif %}" id="{{ form.nome.id_for_label }}" value="{{ form.nome.value|default:'' }}">
+          {% if form.nome.errors %}
+            <div class="invalid-feedback">
+              {% for error in form.nome.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- CPF/CNPJ -->
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label for="{{ form.cpf_cnpj.id_for_label }}" class="form-label"><strong>CPF/CNPJ</strong></label>
+          <input type="text" name="cpf_cnpj" class="form-control shadow-sm {% if form.cpf_cnpj.errors %}is-invalid{% endif %}" id="{{ form.cpf_cnpj.id_for_label }}" value="{{ form.cpf_cnpj.value|default:'' }}">
+          {% if form.cpf_cnpj.errors %}
+            <div class="invalid-feedback">
+              {% for error in form.cpf_cnpj.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Tipo de Pessoa -->
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label for="{{ form.tipo_pessoa.id_for_label }}" class="form-label"><strong>Tipo de Pessoa</strong></label>
+          <select name="tipo_pessoa" class="form-select shadow-sm {% if form.tipo_pessoa.errors %}is-invalid{% endif %}" id="{{ form.tipo_pessoa.id_for_label }}">
+            {% for val, label in form.tipo_pessoa.field.choices %}
+              <option value="{{ val }}" {% if form.tipo_pessoa.value == val %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+          {% if form.tipo_pessoa.errors %}
+            <div class="invalid-feedback">
+              {% for error in form.tipo_pessoa.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Data de Nascimento -->
+      <div class="col-md-4">
+        <div class="mb-3">
+          <label for="{{ form.data_nascimento.id_for_label }}" class="form-label"><strong>Data de Nascimento</strong></label>
+          <input type="date" name="data_nascimento" class="form-control shadow-sm {% if form.data_nascimento.errors %}is-invalid{% endif %}" id="{{ form.data_nascimento.id_for_label }}" value="{{ form.data_nascimento.value|default:'' }}">
+          {% if form.data_nascimento.errors %}
+            <div class="invalid-feedback">
+              {% for error in form.data_nascimento.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Botão de busca -->
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-success shadow-sm">Buscar</button>
+    </div>
+  </div>
 </form>
 
 <hr>

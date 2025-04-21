@@ -79,19 +79,24 @@ def cliente_search_view(request):
     if form.is_valid():
         nome = form.cleaned_data.get('nome')
         cpf_cnpj = form.cleaned_data.get('cpf_cnpj')
+        tipo_pessoa = form.cleaned_data.get('tipo_pessoa')
         data_nascimento = form.cleaned_data.get('data_nascimento')
 
         if nome:
             resultados = resultados.filter(nome__icontains=nome)
         if cpf_cnpj:
-            resultados = resultados.filter(cpf_cnpj__icontains=nome)
+            resultados = resultados.filter(cpf_cnpj__icontains=cpf_cnpj)
+        if tipo_pessoa:
+            resultados = resultados.filter(tipo_pessoa=tipo_pessoa)
         if data_nascimento:
-            resultados = resultados.filter(published_at__lte=data_nascimento)
-    
+            resultados = resultados.filter(data_nascimento=data_nascimento)
+
     return render(request, 'cliente/cliente/serch_clientes.html', {
         'form': form,
         'resultados': resultados
     })
+
+
 
 def ConsultarCliente(request):
     return render(request,'cliente/consultar_clientes.html', context={})
