@@ -4,10 +4,11 @@ from django.contrib import admin
 
 from .models import Contato
 from .models import Endereco
-from .models import Cliente
+from .models import ClientePessoa
+from .models import ClienteEmpresa
 
 class ContatoAdmin(admin.ModelAdmin):
-    list_display = ['tipo_contato','contato', 'cliente']
+    list_display = ['tipo_contato','contato', 'cliente_pessoa']
     search_fields = ['contato']
     actions = None
 
@@ -20,9 +21,16 @@ class EnderecoAdim(admin.ModelAdmin):
 
 admin.site.register(Endereco, EnderecoAdim)
 
-class ClienteAdmin(admin.ModelAdmin):
+class ClientePessoaAdmin(admin.ModelAdmin):
     list_display = ['nome','cpf_cnpj','tipo_pessoa']
     search_fields = ['nome', 'cpf_cnpj']
     actions = None
 
-admin.site.register(Cliente, ClienteAdmin)
+admin.site.register(ClientePessoa, ClientePessoaAdmin)
+
+class ClienteEmpresaAdmin(admin.ModelAdmin):
+    list_display = ['nome','cpf_cnpj','tipo_pessoa']
+    search_fields = ['nome', 'cpf_cnpj']
+    actions = None
+
+admin.site.register(ClienteEmpresa, ClienteEmpresaAdmin)

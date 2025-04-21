@@ -1,5 +1,5 @@
 from django.db import models
-from Cliente.models import Cliente
+from Cliente.models import ClientePessoa
 from Estoque.models import Lote, LocalEstoque
 
 # Create your models here.
@@ -10,7 +10,7 @@ class Pedido(models.Model):
     data_cadastro = models.DateField('Data de cadastro', auto_now=True)
     data_entrega = models.DateField('Data de entrega')
 
-    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
+    cliente = models.ForeignKey(ClientePessoa, on_delete=models.PROTECT)
 
     class Meta:
         verbose_name = 'Pedido'
