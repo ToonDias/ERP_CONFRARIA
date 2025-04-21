@@ -2,19 +2,49 @@ from django.db import models
 
 # Create your models here.
 
+
 class Cliente(models.Model):
     nome = models.CharField(max_length=100)
-    cpf_cnpj = models.CharField('CPF/CNPJ',max_length=18)
-    tipo_pessoa =  models.CharField('Tipo de pessoa', max_length=1, choices=[('P','Pessoa física'),('J','Pessoa jurídica')])
+    cpf_cnpj = models.CharField('CNPJ', max_length=17)
+    tipo_pessoa = models.CharField('Tipo de pessoa', max_length=1, choices=[('F','Pessoa física'),('J','Pessoa jurídica')])
+
+    class Meta:
+        abstract = True
+
+class ClientePessoa(Cliente):
     data_nascimento = models.DateField('Data de nascimento', blank=True)
+    obs = models.TextField('Observações', max_length=254, blank=True)
 
     class Meta:
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
 
+    def save(self, *args, **kwargs):
+        self.tipo_pessoa = 'F'
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return f'{self.nome} - {self.cpf_cnpj}'
-    
+        return f'{self.nome} - {self.cpf_cnpj} - {self.tipo_pessoa}'
+
+class ClienteEmpresa(Cliente):
+    nome_fantasia = models.CharField('Nome fantasia', max_length=100)
+    responsavel = models.CharField('Responsavel legal', max_length=100)
+    responsavel_cpf = models.CharField('Responsalve legal CPF', max_length=17)
+    responsavel_data_nasc = models.DateField('Data de nascimento')
+    data_fundacao = models.DateField('Data de fundação')
+    obs = models.TextField('Observações', max_length=254, blank=True)
+
+    class Meta:
+        verbose_name = 'Cliente'
+        verbose_name_plural = 'Clientes'
+
+    def save(self, *args, **kwargs):
+        self.tipo_pessoa = 'F'
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.nome} - {self.cpf_cnpj} - {self.tipo_pessoa}'
+ 
 class Contato(models.Model):
     contato = models.CharField(max_length=20)
     obs = models.TextField('Observações', max_length=254, blank=True)
@@ -31,14 +61,16 @@ class Contato(models.Model):
                                         ('FB','Facebook'),
                                         ('OT','Outros')
                                         ])
-    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, null=True)
+    
+    cliente_pessoa = models.ForeignKey(ClientePessoa, on_delete=models.PROTECT, null=True, blank=True)
+    cliente_empresa = models.ForeignKey(ClienteEmpresa, on_delete=models.PROTECT, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Contato'
         verbose_name_plural = 'Contatos'
 
     def __str__(self):
-        return f'{self.cliente.nome} - {self.tipo_contato}'
+        return f'{self.tipo_contato} - {self.contato}'
 
 class Endereco(models.Model):
     cep = models.CharField('CEP',max_length=9)
@@ -49,7 +81,9 @@ class Endereco(models.Model):
     uf = models.CharField('UF', max_length=2)
     complemento = models.TextField(max_length=254, blank=True)
     ponto_referencia = models.TextField(max_length=254, blank=True)
-    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
+    
+    cliente_pessoa = models.ForeignKey(ClientePessoa, on_delete=models.PROTECT, null=True, blank=True)
+    cliente_empresa = models.ForeignKey(ClienteEmpresa, on_delete=models.PROTECT, null=True, blank=True)
 
     class Meta: 
         verbose_name = 'Endereço'
