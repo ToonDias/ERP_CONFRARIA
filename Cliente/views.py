@@ -7,16 +7,15 @@ from django.views.generic import DetailView
 from django.views.generic import DeleteView
 
 from .models import ClientePessoa
+from .models import ClienteEmpresa
 from .forms import FormClientePessoa
+from .forms import FormClienteEmpresa
 from .forms import ClientePessoaFilterForm
+from .forms import ClienteEmpresaFilterForm
 
 # Create your views here.
 
-# Views Pessoa Fisica
-class PessoaFisicaListView(ListView):
-    model = ClientePessoa
-    template_name = 'cliente/pf/list.html'
-    context_object_name = 'clientes'
+# create view PF e PJ
 
 class PessoaFisicaCreateView(CreateView):
     model = ClientePessoa
@@ -24,53 +23,51 @@ class PessoaFisicaCreateView(CreateView):
     template_name = 'cliente/pf/create.html'
     success_url = reverse_lazy('listar_pf')
 
+class PessaoJuridicaCreateView(CreateView):
+    model = ClienteEmpresa
+    form_class = FormClienteEmpresa
+    template_name = 'cliente/pj/create.html'
+    success_url = reverse_lazy('listar_pj')
+
+# update views PF e PJ
+
 class PessoaFisicaUpdadeViews(UpdateView):
     model = ClientePessoa
     form_class = FormClientePessoa
     template_name = 'cliente/pf/Update.html'
     success_url = reverse_lazy('listar_pf')
 
+class PessoaJurificaUpdadeViews(UpdateView):
+    model = ClienteEmpresa
+    form_class = FormClienteEmpresa
+    template_name = 'cliente/pj/Update.html'
+    success_url = reverse_lazy('listar_pj')
+
+# detail view PF e PJ
+
 class PessoaFisicaDetailView(DetailView):
     model = ClientePessoa
     template_name = 'cliente/pf/detail.html'
     context_object_name = 'cliente'
+
+class PessoaJurificaDetailView(DetailView):
+    model = ClienteEmpresa
+    template_name = 'cliente/pf/detail.html'
+    context_object_name = 'cliente'
+
+# delete views PF e PJ
 
 class PessoaFisicaDeleteView(DeleteView):
     model = ClientePessoa
     template_name = 'cliente/pf/delete.html'
     success_url = reverse_lazy('listar_pf')
 
-# Pessoa Juridica
-
-class PessoaJuridicaListView(ListView):
-    model = ClientePessoa
-    template_name = 'cliente/pj/list.html'
-    context_object_name = 'clientes'
-
-class PessoaJuridicaCreateView(CreateView):
-    model = ClientePessoa
-    form_class = FormClientePessoa
-    template_name = 'cliente/pj/create.html'
-    success_url = reverse_lazy('listar_pj')
-
-class PessoaJuridicaUpdadeViews(UpdateView):
-    model = ClientePessoa
-    form_class = FormClientePessoa
-    template_name = 'cliente/pj/Update.html'
-    success_url = reverse_lazy('listar_pj')
-
-class PessoaJuridicaDetailView(DetailView):
-    model = ClientePessoa
-    template_name = 'cliente/pj/detail.html'
-    context_object_name = 'cliente'
-
 class PessoaJuridicaDeleteView(DeleteView):
-    model = ClientePessoa
+    model = ClienteEmpresa
     template_name = 'cliente/pj/delete.html'
     success_url = reverse_lazy('listar_pj')
 
-
-# Seach views clientes
+# seach views PF
 
 def cliente_search_view(request):
     form = ClientePessoaFilterForm(request.GET or None)
@@ -95,32 +92,3 @@ def cliente_search_view(request):
         'form': form,
         'resultados': resultados
     })
-
-
-
-def ConsultarCliente(request):
-    return render(request,'cliente/consultar_clientes.html', context={})
-
-def ListarClientes(request):
-
-    from .models import Cliente
-
-    clientes = Cliente.objects.all()
-
-    context = {
-        'clientes': clientes
-    }
-
-    return render(request, 'cliente/listar_pf.html', context={})
-
-def CadastrarPessoaFisica(request):
-    return render(request, 'cliente/pessoa_fisica.html', context={})
-
-def CadastrarPessoaJuridica(request):
-    return render(request, 'cliente/pessoa_juridica.html', context={})
-
-def CadastrarPessoaFisicaEstrangeira(request):
-    return render(request, 'cliente/pessoa_fisica_e.html', context={})
-
-def CadastrarPessoaJuridicaEstrangeira(request):
-    return render(request, 'cliente/pessoa_juridica_e.html', context={})

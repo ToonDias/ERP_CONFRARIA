@@ -1,14 +1,20 @@
 from django import forms
 from .models import ClientePessoa
+from .models import ClienteEmpresa
 
 class FormClientePessoa(forms.ModelForm):
     class Meta:
         model = ClientePessoa
         fields = '__all__'
 
+class FormClienteEmpresa(forms.ModelForm):
+    class Meta:
+        model = ClienteEmpresa
+        fields = '__all__'
+
 class ClientePessoaFilterForm(forms.Form):
     nome = forms.CharField(required=False, label="Nome")
-    cpf_cnpj = forms.CharField(required=False, label="CPF/CNPJ")
+    cpf_cnpj = forms.CharField(required=False, label="CPF")
     
     tipo_pessoa = forms.ChoiceField(
         required=False,
@@ -21,3 +27,14 @@ class ClientePessoaFilterForm(forms.Form):
     #     label="Data de Nascimento",
     #     widget=forms.DateInput(attrs={'type': 'date'})
     # )
+
+class ClienteEmpresaFilterForm(forms.Form):
+    nome = forms.CharField(required=False, label='Razão Social')
+    cpf_cnpj = forms.CharField(required=False, label='CNPJ')
+
+    tipo_pessoa = forms.ChoiceField(
+        required=False,
+        choices=[('', 'Todos')] + list(ClienteEmpresa._meta.get_field('tipo_pessoa').choices),
+        label="Tipo de Pessoa"
+    )
+
