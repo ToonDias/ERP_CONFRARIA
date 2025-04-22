@@ -24,6 +24,7 @@ admin.site.register(Endereco, EnderecoAdim)
 class ClientePessoaAdmin(admin.ModelAdmin):
     list_display = ['nome','cpf_cnpj','tipo_pessoa']
     search_fields = ['nome', 'cpf_cnpj']
+    exclude = ['tipo_pessoa']
     actions = None
 
 admin.site.register(ClientePessoa, ClientePessoaAdmin)
@@ -31,6 +32,7 @@ admin.site.register(ClientePessoa, ClientePessoaAdmin)
 class ClienteEmpresaAdmin(admin.ModelAdmin):
     list_display = ['nome','cpf_cnpj','tipo_pessoa']
     search_fields = ['nome', 'cpf_cnpj']
+    exclude = ['tipo_pessoa']
     actions = None
 
 admin.site.register(ClienteEmpresa, ClienteEmpresaAdmin)

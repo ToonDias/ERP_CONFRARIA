@@ -31,7 +31,7 @@ urlpatterns = [
     path('confraria/proteicos/', views.ItensProteicos, name='itens_proteicos_page'),
     path('confraria/drageados-snacks/', views.ItensDrageadosSnacks, name='itens_drageados_snacks_page'),
     path('confraria/evento/', views.ItensEvento, name='itens_eventos_page'),
-        path('cliente/', views.ClientePage, name='cliente_page'),
+    path('cliente/', views.ClientePage, name='cliente_page'),
 
     # outras URLS
 

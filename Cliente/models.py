@@ -2,22 +2,21 @@ from django.db import models
 
 # Create your models here.
 
-
 class Cliente(models.Model):
-    nome = models.CharField(max_length=100)
-    cpf_cnpj = models.CharField('CNPJ', max_length=17)
+    nome = models.CharField(max_length=100)  # Obrigatório (Razão Social)
+    cpf_cnpj = models.CharField('CPF/CNPJ', max_length=17)  # Obrigatório
     tipo_pessoa = models.CharField('Tipo de pessoa', max_length=1, choices=[('F','Pessoa física'),('J','Pessoa jurídica')])
 
     class Meta:
         abstract = True
 
 class ClientePessoa(Cliente):
-    data_nascimento = models.DateField('Data de nascimento', blank=True)
-    obs = models.TextField('Observações', max_length=254, blank=True)
+    data_nascimento = models.DateField('Data de nascimento', blank=True, null=True)  # Opcional
+    obs = models.TextField('Observações', max_length=254, blank=True)  # Opcional
 
     class Meta:
-        verbose_name = 'Cliente'
-        verbose_name_plural = 'Clientes'
+        verbose_name = 'Cliente pessoa física'
+        verbose_name_plural = 'Clientes PF'
 
     def save(self, *args, **kwargs):
         self.tipo_pessoa = 'F'
@@ -27,19 +26,20 @@ class ClientePessoa(Cliente):
         return f'{self.nome} - {self.cpf_cnpj} - {self.tipo_pessoa}'
 
 class ClienteEmpresa(Cliente):
-    nome_fantasia = models.CharField('Nome fantasia', max_length=100)
-    responsavel = models.CharField('Responsavel legal', max_length=100)
-    responsavel_cpf = models.CharField('Responsalve legal CPF', max_length=17)
-    responsavel_data_nasc = models.DateField('Data de nascimento')
-    data_fundacao = models.DateField('Data de fundação')
-    obs = models.TextField('Observações', max_length=254, blank=True)
+    nome_fantasia = models.CharField('Nome fantasia', max_length=100)  # Obrigatório
+    responsavel = models.CharField('Responsavel legal', max_length=100)  # Obrigatório
+
+    responsavel_cpf = models.CharField('Responsavel legal CPF', max_length=17, blank=True)  # Opcional
+    responsavel_data_nasc = models.DateField('Data de nascimento', blank=True, null=True)  # Opcional
+    data_fundacao = models.DateField('Data de fundação', blank=True, null=True)  # Opcional
+    obs = models.TextField('Observações', max_length=254, blank=True)  # Opcional
 
     class Meta:
-        verbose_name = 'Cliente'
-        verbose_name_plural = 'Clientes'
+        verbose_name = 'Cliente pessoa júridica'
+        verbose_name_plural = 'Clientes PJ'
 
     def save(self, *args, **kwargs):
-        self.tipo_pessoa = 'F'
+        self.tipo_pessoa = 'J'  # Define como pessoa física sempre
         super().save(*args, **kwargs)
 
     def __str__(self):

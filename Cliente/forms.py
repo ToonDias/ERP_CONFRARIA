@@ -5,12 +5,12 @@ from .models import ClienteEmpresa
 class FormClientePessoa(forms.ModelForm):
     class Meta:
         model = ClientePessoa
-        fields = '__all__'
+        exclude = ['tipo_pessoa']
 
 class FormClienteEmpresa(forms.ModelForm):
     class Meta:
         model = ClienteEmpresa
-        fields = '__all__'
+        exclude = ['tipo_pessoa']
 
 class ClientePessoaFilterForm(forms.Form):
     nome = forms.CharField(required=False, label="Nome")

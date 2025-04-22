@@ -21,13 +21,13 @@ class PessoaFisicaCreateView(CreateView):
     model = ClientePessoa
     form_class = FormClientePessoa
     template_name = 'cliente/pf/create.html'
-    success_url = reverse_lazy('listar_pf')
+    success_url = reverse_lazy('listar_empresas')
 
 class PessoaJuridicaCreateView(CreateView):
     model = ClienteEmpresa
     form_class = FormClienteEmpresa
     template_name = 'cliente/pj/create.html'
-    success_url = reverse_lazy('listar_pj')
+    success_url = reverse_lazy('listar_empresas')
 
 # update views PF e PJ
 
@@ -35,13 +35,13 @@ class PessoaFisicaUpdateView(UpdateView):
     model = ClientePessoa
     form_class = FormClientePessoa
     template_name = 'cliente/pf/Update.html'
-    success_url = reverse_lazy('listar_pf')
+    success_url = reverse_lazy('listar_empresas')
 
 class PessoaJuridicaUpdateView(UpdateView):
     model = ClienteEmpresa
     form_class = FormClienteEmpresa
     template_name = 'cliente/pj/Update.html'
-    success_url = reverse_lazy('listar_pj')
+    success_url = reverse_lazy('listar_empresas')
 
 # detail view PF e PJ
 
@@ -60,12 +60,12 @@ class PessoaJuridicaDetailView(DetailView):
 class PessoaFisicaDeleteView(DeleteView):
     model = ClientePessoa
     template_name = 'cliente/pf/delete.html'
-    success_url = reverse_lazy('listar_pf')
+    success_url = reverse_lazy('listar_empresas')
 
 class PessoaJuridicaDeleteView(DeleteView):
     model = ClienteEmpresa
     template_name = 'cliente/pj/delete.html'
-    success_url = reverse_lazy('listar_pj')
+    success_url = reverse_lazy('listar_empresas')
 
 # seach views PF e PJ
 

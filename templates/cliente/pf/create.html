@@ -1,48 +1,93 @@
 {% extends 'base.html' %}
 
 {% block 'title' %}
-    Categoria | Cadastro
+    Cliente | Cadastrar
 {% endblock %}
 
 {% block 'content-main' %}
 <div class="container mt-5">
-  <!-- Card Externo com borda suave e sombra -->
   <div class="card shadow-lg border-light rounded-3">
     <div class="card-header text-center bg-success text-white">
-      <h3>Cadastrar Categoria</h3>
+      <h3>Cadastrar Cliente Pessoa Física</h3>
     </div>
     <div class="card-body">
       <form method="POST" novalidate>
         {% csrf_token %}
         
-        <!-- Sessão Categoria -->
         <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
-          <h4 class="mb-3 text-success">Informações da Categoria</h4>
+          <h4 class="mb-3 text-success">Informações do Cliente</h4>
           <div class="row">
+
+            <!-- Nome -->
             <div class="col-md-12">
               <div class="mb-3">
-                <label for="{{ form.descricao.id_for_label }}" class="form-label"><strong>Descrição</strong></label>
-                <input type="text" name="descricao" class="form-control shadow-sm {% if form.descricao.errors %}is-invalid{% endif %}" id="{{ form.descricao.id_for_label }}" value="{{ form.descricao.value|default:'' }}" required>
-                {% if form.descricao.errors %}
+                <label for="{{ form.nome.id_for_label }}" class="form-label"><strong>Nome</strong></label>
+                <input type="text" name="nome" class="form-control shadow-sm {% if form.nome.errors %}is-invalid{% endif %}" id="{{ form.nome.id_for_label }}" value="{{ form.nome.value|default:'' }}" required>
+                {% if form.nome.errors %}
                   <div class="invalid-feedback">
-                    {% for error in form.descricao.errors %}
+                    {% for error in form.nome.errors %}
                       <p>{{ error }}</p>
                     {% endfor %}
                   </div>
                 {% endif %}
-                <div class="valid-feedback">Looks good!</div>
               </div>
             </div>
-           </div>
+
+            <!-- CPF -->
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="{{ form.cpf_cnpj.id_for_label }}" class="form-label"><strong>CPF</strong></label>
+                <input type="text" name="cpf_cnpj" class="form-control shadow-sm {% if form.cpf_cnpj.errors %}is-invalid{% endif %}" id="{{ form.cpf_cnpj.id_for_label }}" value="{{ form.cpf_cnpj.value|default:'' }}" required>
+                {% if form.cpf_cnpj.errors %}
+                  <div class="invalid-feedback">
+                    {% for error in form.cpf_cnpj.errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Data de Nascimento (opcional) -->
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="{{ form.data_nascimento.id_for_label }}" class="form-label"><strong>Data de nascimento</strong></label>
+                <input type="date" name="data_nascimento" class="form-control shadow-sm {% if form.data_nascimento.errors %}is-invalid{% endif %}" id="{{ form.data_nascimento.id_for_label }}" value="{{ form.data_nascimento.value|default:'' }}">
+                {% if form.data_nascimento.errors %}
+                  <div class="invalid-feedback">
+                    {% for error in form.data_nascimento.errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Observações (opcional) -->
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="{{ form.obs.id_for_label }}" class="form-label"><strong>Detalhes</strong></label>
+                <textarea rows="3" name="obs" class="form-control shadow-sm {% if form.obs.errors %}is-invalid{% endif %}" id="{{ form.obs.id_for_label }}">{{ form.obs.value|default:'' }}</textarea>
+                {% if form.obs.errors %}
+                  <div class="invalid-feedback">
+                    {% for error in form.obs.errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+          </div>
         </div>
-        <!-- Botões de Ação -->
+
+        <!-- Botões -->
         <div class="d-flex justify-content-between mt-4">
           <button type="submit" class="btn btn-success shadow-sm px-4 py-2">Salvar</button>
-          <a href="{% url 'listar_categorias' %}" class="btn btn-secondary shadow-sm px-4 py-2">Cancelar</a>
+          <a href="{% url 'listar_empresas' %}" class="btn btn-secondary shadow-sm px-4 py-2">Cancelar</a>
         </div>
       </form>
     </div>
   </div>
-  <!-- Fim do Card Externo -->
 </div>
 {% endblock %}

@@ -14,14 +14,12 @@
             Cliente
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="{% url 'consultar_clientes' %}">Consultar</a></li>
+            <li><a class="dropdown-item" href="#">Consultar</a></li>
             <li class="dropdown-submenu">
               <a class="dropdown-item" href="#">Cadastrar</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'cadastrar_pessoa_fisica' %}">Pessoa Física</a></li>
-                <li><a class="dropdown-item" href="{% url 'cadastrar_pessoa_juridica' %}">Pessoa Jurídica</a></li>
-                <li><a class="dropdown-item" href="{% url 'cadastrar_pessoa_fisica_estrangeira' %}">Pessoa Física Estrangeira</a></li>
-                <li><a class="dropdown-item" href="{% url 'cadastrar_pessoa_juridica_estrangeira' %}">Pessoa Jurídica Estrangeira</a></li>
+                <li><a class="dropdown-item" href="{% url 'pessoa_fisica_create' %}">Pessoa Física</a></li>
+                <li><a class="dropdown-item" href="{% url 'pessoa_juridica_create' %}">Pessoa Jurídica</a></li>
               </ul>
             </li>
           </ul>
