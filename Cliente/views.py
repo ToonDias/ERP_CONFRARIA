@@ -23,7 +23,7 @@ class PessoaFisicaCreateView(CreateView):
     template_name = 'cliente/pf/create.html'
     success_url = reverse_lazy('listar_pf')
 
-class PessaoJuridicaCreateView(CreateView):
+class PessoaJuridicaCreateView(CreateView):
     model = ClienteEmpresa
     form_class = FormClienteEmpresa
     template_name = 'cliente/pj/create.html'
@@ -31,13 +31,13 @@ class PessaoJuridicaCreateView(CreateView):
 
 # update views PF e PJ
 
-class PessoaFisicaUpdadeViews(UpdateView):
+class PessoaFisicaUpdateView(UpdateView):
     model = ClientePessoa
     form_class = FormClientePessoa
     template_name = 'cliente/pf/Update.html'
     success_url = reverse_lazy('listar_pf')
 
-class PessoaJurificaUpdadeViews(UpdateView):
+class PessoaJuridicaUpdateView(UpdateView):
     model = ClienteEmpresa
     form_class = FormClienteEmpresa
     template_name = 'cliente/pj/Update.html'
@@ -50,7 +50,7 @@ class PessoaFisicaDetailView(DetailView):
     template_name = 'cliente/pf/detail.html'
     context_object_name = 'cliente'
 
-class PessoaJurificaDetailView(DetailView):
+class PessoaJuridicaDetailView(DetailView):
     model = ClienteEmpresa
     template_name = 'cliente/pf/detail.html'
     context_object_name = 'cliente'
@@ -67,9 +67,9 @@ class PessoaJuridicaDeleteView(DeleteView):
     template_name = 'cliente/pj/delete.html'
     success_url = reverse_lazy('listar_pj')
 
-# seach views PF
+# seach views PF e PJ
 
-def cliente_search_view(request):
+def cliente_pf_search_view(request):
     form = ClientePessoaFilterForm(request.GET or None)
     resultados = ClientePessoa.objects.all()
 
@@ -88,7 +88,31 @@ def cliente_search_view(request):
         if data_nascimento:
             resultados = resultados.filter(data_nascimento=data_nascimento)
 
-    return render(request, 'cliente/cliente/serch_clientes.html', {
+    return render(request, 'cliente/pf/serch_clientes.html', {
+        'form': form,
+        'resultados': resultados
+    })
+
+def cliente_pj_search_view(request):
+    form = ClientePessoaFilterForm(request.GET or None)
+    resultados = ClientePessoa.objects.all()
+
+    if form.is_valid():
+        nome = form.cleaned_data.get('nome')
+        cpf_cnpj = form.cleaned_data.get('cpf_cnpj')
+        tipo_pessoa = form.cleaned_data.get('tipo_pessoa')
+        data_nascimento = form.cleaned_data.get('data_nascimento')
+
+        if nome:
+            resultados = resultados.filter(nome__icontains=nome)
+        if cpf_cnpj:
+            resultados = resultados.filter(cpf_cnpj__icontains=cpf_cnpj)
+        if tipo_pessoa:
+            resultados = resultados.filter(tipo_pessoa=tipo_pessoa)
+        if data_nascimento:
+            resultados = resultados.filter(data_nascimento=data_nascimento)
+
+    return render(request, 'cliente/pj/serch_clientes.html', {
         'form': form,
         'resultados': resultados
     })
