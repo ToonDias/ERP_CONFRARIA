@@ -34,13 +34,15 @@ class PessoaJuridicaCreateView(CreateView):
 class PessoaFisicaUpdateView(UpdateView):
     model = ClientePessoa
     form_class = FormClientePessoa
-    template_name = 'cliente/pf/Update.html'
+    template_name = 'cliente/pf/update.html'
+    context_object_name = 'cliente'
     success_url = reverse_lazy('listar_empresas')
 
 class PessoaJuridicaUpdateView(UpdateView):
     model = ClienteEmpresa
     form_class = FormClienteEmpresa
-    template_name = 'cliente/pj/Update.html'
+    template_name = 'cliente/pj/update.html'
+    context_object_name = 'cliente'
     success_url = reverse_lazy('listar_empresas')
 
 # detail view PF e PJ

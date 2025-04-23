@@ -47,26 +47,7 @@
                   </div>
                 {% endif %}
               </div>
-            </div>
-      
-            <!-- Tipo de Pessoa -->
-            <div class="col-md-12">
-              <div class="mb-3">
-                <label for="{{ form.tipo_pessoa.id_for_label }}" class="form-label"><strong>Tipo de Pessoa</strong></label>
-                <select name="tipo_pessoa" class="form-select shadow-sm {% if form.tipo_pessoa.errors %}is-invalid{% endif %}" id="{{ form.tipo_pessoa.id_for_label }}">
-                  {% for val, label in form.tipo_pessoa.field.choices %}
-                    <option value="{{ val }}" {% if form.tipo_pessoa.value == val %}selected{% endif %}>{{ label }}</option>
-                  {% endfor %}
-                </select>
-                {% if form.tipo_pessoa.errors %}
-                  <div class="invalid-feedback">
-                    {% for error in form.tipo_pessoa.errors %}
-                      <p>{{ error }}</p>
-                    {% endfor %}
-                  </div>
-                {% endif %}
-              </div>
-            </div>      
+            </div>     
           </div>
         </div>
         <!-- Botão de busca -->
