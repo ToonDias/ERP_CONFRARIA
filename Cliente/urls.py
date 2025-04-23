@@ -16,5 +16,5 @@ urlpatterns = [
     path('delete/J/<int:pk>',views.PessoaJuridicaDeleteView.as_view(), name='pssoa_juridica_delete'),
     # search views
     path('search/pf', views.cliente_pf_search_view, name='pessoa_fisica_search'),
-    path('search/pf', views.cliente_pj_search_view, name='pessoa_juridica_search'),
+    path('search/pj', views.cliente_pj_search_view, name='pessoa_juridica_search'),
 ]

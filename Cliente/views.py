@@ -78,17 +78,14 @@ def cliente_pf_search_view(request):
     if form.is_valid():
         nome = form.cleaned_data.get('nome')
         cpf_cnpj = form.cleaned_data.get('cpf_cnpj')
-        tipo_pessoa = form.cleaned_data.get('tipo_pessoa')
-        data_nascimento = form.cleaned_data.get('data_nascimento')
+        obs = form.cleaned_data.get('obs')
 
         if nome:
             resultados = resultados.filter(nome__icontains=nome)
         if cpf_cnpj:
             resultados = resultados.filter(cpf_cnpj__icontains=cpf_cnpj)
-        if tipo_pessoa:
-            resultados = resultados.filter(tipo_pessoa=tipo_pessoa)
-        if data_nascimento:
-            resultados = resultados.filter(data_nascimento=data_nascimento)
+        if obs:
+            resultados = resultados.filter(obs__icontains=obs)
 
     return render(request, 'cliente/pf/serch_clientes.html', {
         'form': form,
@@ -96,23 +93,29 @@ def cliente_pf_search_view(request):
     })
 
 def cliente_pj_search_view(request):
-    form = ClientePessoaFilterForm(request.GET or None)
-    resultados = ClientePessoa.objects.all()
+    form = ClienteEmpresaFilterForm(request.GET or None)
+    resultados = ClienteEmpresa.objects.all()
 
     if form.is_valid():
         nome = form.cleaned_data.get('nome')
+        nome_fantasia = form.cleaned_data.get('nome_fantasia')
         cpf_cnpj = form.cleaned_data.get('cpf_cnpj')
-        tipo_pessoa = form.cleaned_data.get('tipo_pessoa')
-        data_nascimento = form.cleaned_data.get('data_nascimento')
+        responsavel = form.cleaned_data.get('responsavel')
+        responsavel_cpf = form.cleaned_data.get('responsavel_cpf')
+        obs = form.cleaned_data.get('obs')
 
         if nome:
             resultados = resultados.filter(nome__icontains=nome)
+        if nome_fantasia:
+            resultados = resultados.filter(nome_fantasia__icontains=nome_fantasia)
         if cpf_cnpj:
             resultados = resultados.filter(cpf_cnpj__icontains=cpf_cnpj)
-        if tipo_pessoa:
-            resultados = resultados.filter(tipo_pessoa=tipo_pessoa)
-        if data_nascimento:
-            resultados = resultados.filter(data_nascimento=data_nascimento)
+        if responsavel:
+            resultados = resultados.filter(responsavel__icontains=responsavel)
+        if responsavel_cpf:
+            resultados = resultados.filter(responsavel_cpf__icontains=responsavel_cpf)
+        if obs:
+            resultados = resultados.filter(obs__icontains=obs)
 
     return render(request, 'cliente/pj/serch_clientes.html', {
         'form': form,

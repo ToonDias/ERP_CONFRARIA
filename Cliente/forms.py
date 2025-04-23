@@ -15,12 +15,7 @@ class FormClienteEmpresa(forms.ModelForm):
 class ClientePessoaFilterForm(forms.Form):
     nome = forms.CharField(required=False, label="Nome")
     cpf_cnpj = forms.CharField(required=False, label="CPF")
-    
-    tipo_pessoa = forms.ChoiceField(
-        required=False,
-        choices=[('', 'Todos')] + list(ClientePessoa._meta.get_field('tipo_pessoa').choices),
-        label="Tipo de Pessoa"
-    )
+    obs = forms.CharField(required=False, label='Observações')
 
     # data_nascimento = forms.DateField(
     #     required=False,
@@ -30,11 +25,8 @@ class ClientePessoaFilterForm(forms.Form):
 
 class ClienteEmpresaFilterForm(forms.Form):
     nome = forms.CharField(required=False, label='Razão Social')
+    nome_fantasia = forms.CharField(required=False, label='Nome fantasia')
     cpf_cnpj = forms.CharField(required=False, label='CNPJ')
-
-    tipo_pessoa = forms.ChoiceField(
-        required=False,
-        choices=[('', 'Todos')] + list(ClienteEmpresa._meta.get_field('tipo_pessoa').choices),
-        label="Tipo de Pessoa"
-    )
-
+    responsavel = forms.CharField(required=False, label='Responsavel')
+    responsavel_cpf = forms.CharField(required=False, label='Responsavel')
+    obs = forms.CharField(required=False, label='Observações')

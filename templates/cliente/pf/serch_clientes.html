@@ -47,7 +47,21 @@
                   </div>
                 {% endif %}
               </div>
-            </div>     
+            </div> 
+            <!-- Observações     -->
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="{{ form.obs.id_for_label }}" class="form-label"><strong>Observações</strong></label>
+                <input type="text" name="obs" class="form-control shadow-sm {% if form.obs.errors %}is-invalid{% endif %}" id="{{ form.obs.id_for_label }}" value="{{ form.obs.value|default:'' }}">
+                {% if form.obs.errors %}
+                  <div class="invalid-feedback">
+                    {% for error in form.obs.errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
           </div>
         </div>
         <!-- Botão de busca -->
@@ -90,7 +104,7 @@
                         <span class="visually-hidden">Toggle Dropdown</span>
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Editar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'pessoa_fisica_update' resultado.id %}">Editar</a></li>
                         <li><a class="dropdown-item" href="#">Deletar</a></li>
                       </ul>
                     </div>
