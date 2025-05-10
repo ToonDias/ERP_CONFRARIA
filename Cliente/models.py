@@ -24,7 +24,7 @@ class ClientePessoa(Cliente):
 
     def __str__(self):
         return f'{self.nome} - {self.cpf_cnpj} - {self.tipo_pessoa}'
-
+    
 class ClienteEmpresa(Cliente):
     nome_fantasia = models.CharField('Nome fantasia', max_length=100)  # Obrigatório
     responsavel = models.CharField('Responsavel legal', max_length=100)  # Obrigatório

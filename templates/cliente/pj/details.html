@@ -1,12 +1,64 @@
-<div class="mb-3">
-    <label for="{{ form.responsavel_cpf.id_for_label }}" class="form-label"><strong>Responsavel CPF</strong></label>
-    <input type="text" name="responsavel_cpf" class="form-control shadow-sm {% if form.responsavel_cpf.errors %}is-invalid{% endif %}" id="{{ form.responsavel_cpf.id_for_label }}" value="{{ form.responsavel_cpf.value|default:'' }}">
-    {% if form.responsavel_cpf.errors %}
-      <div class="invalid-feedback">
-        {% for error in form.responsavel_cpf.errors %}
-          <p>{{ error }}</p>
-        {% endfor %}
-      </div>
-    {% endif %}
-  </div>
+{% extends 'base.html' %}
+
+{% block 'title' %}
+    Cliete | Detalhes
+{% endblock %}
+
+    <!-- 
+    nome_fantasia
+    responsavel
+    responsavel_data_nasc
+    data_fundacao
+    obs 
+    -->
+
+
+{% block 'content-main' %}
+<div class="container mt-5">
+    <!-- Card Externo com borda suave e sombra média -->
+    <div class="card shadow-lg border-light rounded-3">
+        <div class="card-header text-center bg-success text-white">
+            <h3>Detalhes do cliente: <strong>{{ cliente.nome }}</strong></h3>
+        </div>
+        <div class="card-body">
+            <!-- Informações do cliente -->
+            <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
+                <dl class="row mb-4">
+                    <dt class="col-sm-3"><strong>Nome:</strong></dt>
+                    <dd class="col-sm-9">{{ cliente.nome }}</dd>
+
+                    <dt class="col-sm-3"><strong>Nome Fantasia:</strong></dt>
+                    <dd class="col-sm-9">{{ cliente.nome_fantasia }}</dd>
+
+                    <dt class="col-sm-3"><strong>CPF:</strong></dt>
+                    <dd class="col-sm-9">{{ cliente.cpf_cnpj }}</dd>
+
+                    <dt class="col-sm-3"><strong>Responsavel:</strong></dt>
+                    <dd class="col-sm-9">{{ cliente.responsavel }}</dd>
+
+                    <dt class="col-sm-3"><strong>Responsavel CPF:</strong></dt>
+                    <dd class="col-sm-9">{{ cliente.responsavel_cpf }}</dd>
+
+                    <dt class="col-sm-3"><strong>Data de fundação:</strong></dt>
+                    <dd class="col-sm-9">{{ cliente.data_fundacao }}</dd>
+
+                    <dt class="col-sm-3"><strong>Observações:</strong></dt>
+                    <dd class="col-sm-9">{{ cliente.obs }}</dd>
+                </dl>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="row">
+                <div class="col-8">
+                    <a href="{% url 'pessoa_juridica_update' pk=cliente.pk %}" class="btn btn-primary px-4 py-2">Editar</a>
+                    <a href="{% url 'pessoa_juridica_search' %}" class="btn btn-secondary px-4 py-2">Voltar</a>
+                </div>
+                <div class="col-4 text-end">
+                    <a href="{% url 'pessoa_juridica_delete' pk=cliente.pk %}" class="btn btn-danger px-4 py-2">Deletar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fim do Card Externo -->
 </div>
+{% endblock %}
