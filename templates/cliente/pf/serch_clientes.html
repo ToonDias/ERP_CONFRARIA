@@ -99,13 +99,13 @@
                   <td>{{ resultado.tipo_pessoa }}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <a type="button" role="button" href="#" class="btn btn-info">Detalhes</a>
+                      <a type="button" role="button" href="{% url 'pessoa_fisica_detail' resultado.id %}" class="btn btn-info">Detalhes</a>
                       <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'pessoa_fisica_update' resultado.id %}">Editar</a></li>
-                        <li><a class="dropdown-item" href="#">Deletar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'pessoa_fisica_update' pk=resultado.id %}">Editar</a></li>
+                        <li><a class="dropdown-item" href="{% url 'pessoa_fisica_delete' pk=resultado.id %}">Deletar</a></li>
                       </ul>
                     </div>
                   </td>

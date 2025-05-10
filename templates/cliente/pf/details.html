@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}
+    Cliete | Detalhes
+{% endblock %}
+
+{% block 'content-main' %}
+<div class="container mt-5">
+    <!-- Card Externo com borda suave e sombra média -->
+    <div class="card shadow-lg border-light rounded-3">
+        <div class="card-header text-center bg-success text-white">
+            <h3>Detalhes do cliente: <strong>{{ cliente.nome }}</strong></h3>
+        </div>
+        <div class="card-body">
+            <!-- Informações do cliente -->
+            <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
+                <dl class="row mb-4">
+                    <dt class="col-sm-3"><strong>Nome:</strong></dt>
+                    <dd class="col-sm-9">{{ cliente.nome }}</dd>
+
+                    <dt class="col-sm-3"><strong>CPF:</strong></dt>
+                    <dd class="col-sm-9">{{ cliente.cpf_cnpj }}</dd>
+
+                    <dt class="col-sm-3"><strong>Data de nascimento:</strong></dt>
+                    <dd class="col-sm-9">{{ cliente.data_nascimento }}</dd>
+
+                    <dt class="col-sm-3"><strong>Observações:</strong></dt>
+                    <dd class="col-sm-9">{{ cliente.obs }}</dd>
+                </dl>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="row">
+                <div class="col-8">
+                    <a href="{% url 'pessoa_fisica_update' cliente.pk %}" class="btn btn-primary px-4 py-2">Editar</a>
+                    <a href="{% url 'pessoa_fisica_search' %}" class="btn btn-secondary px-4 py-2">Voltar</a>
+                </div>
+                <div class="col-4 text-end">
+                    <a href="{% url 'pessoa_fisica_delete' cliente.pk %}" class="btn btn-danger px-4 py-2">Deletar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fim do Card Externo -->
+</div>
+{% endblock %}
