@@ -1,0 +1,12 @@
+<div class="mb-3">
+    <label for="{{ form.responsavel_cpf.id_for_label }}" class="form-label"><strong>Responsavel CPF</strong></label>
+    <input type="text" name="responsavel_cpf" class="form-control shadow-sm {% if form.responsavel_cpf.errors %}is-invalid{% endif %}" id="{{ form.responsavel_cpf.id_for_label }}" value="{{ form.responsavel_cpf.value|default:'' }}">
+    {% if form.responsavel_cpf.errors %}
+      <div class="invalid-feedback">
+        {% for error in form.responsavel_cpf.errors %}
+          <p>{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
