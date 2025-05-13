@@ -1,6 +1,10 @@
 from django import forms
+from django.forms import inlineformset_factory
 from .models import ClientePessoa
 from .models import ClienteEmpresa
+from .models import Endereco
+from .models import Contato
+
 
 class FormClientePessoa(forms.ModelForm):
     class Meta:
@@ -30,3 +34,12 @@ class ClienteEmpresaFilterForm(forms.Form):
     responsavel = forms.CharField(required=False, label='Responsavel')
     responsavel_cpf = forms.CharField(required=False, label='Responsavel')
     obs = forms.CharField(required=False, label='Observações')
+
+
+class ClientePessoaFisicaFull(forms.ModelForm):
+    class Meta:
+        model = ClientePessoa
+        exclude =  ['tipo_pessoa'] 
+    
+EnderecoFormSet = inlineformset_factory(ClientePessoa, Endereco, fields='__all__', extra=1)
+ContatoFormSet = inlineformset_factory(ClientePessoa, Contato, fields='__all__', extra=1)

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}
+    Cliente | Cadastrar
+{% endblock %}
+
+{% block 'content-main' %}
+<div class="container mt-5">
+  {% load crispy_forms_tags %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ cliente_form|crispy }}
+
+    <h3>Endereço</h3>
+    {{ endereco_formset.management_form }}
+    {% for form in endereco_formset %}
+        {{ form|crispy }}
+    {% endfor %}
+
+    <h3>Contato</h3>
+    {{ contato_formset.management_form }}
+    {% for form in contato_formset %}
+        {{ form|crispy }}
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
+
+</div>
+{% endblock %}

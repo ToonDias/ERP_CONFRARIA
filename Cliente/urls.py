@@ -17,4 +17,7 @@ urlpatterns = [
     # search views
     path('search/pf', views.cliente_pf_search_view, name='pessoa_fisica_search'),
     path('search/pj', views.cliente_pj_search_view, name='pessoa_juridica_search'),
+
+    # teste views
+    path('teste/pf', views.cliente_pf_create, name='cliente_pf_create')
 ]

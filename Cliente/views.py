@@ -13,6 +13,10 @@ from .forms import FormClienteEmpresa
 from .forms import ClientePessoaFilterForm
 from .forms import ClienteEmpresaFilterForm
 
+from .forms import ClientePessoaFisicaFull
+from .forms import EnderecoFormSet
+from .forms import ContatoFormSet
+
 # Create your views here.
 
 # create view PF e PJ
@@ -122,4 +126,33 @@ def cliente_pj_search_view(request):
     return render(request, 'cliente/pj/serch_clientes.html', {
         'form': form,
         'resultados': resultados
+    })
+
+def cliente_pf_create(request):
+    if request.method == 'POST':
+        cliente_form = ClientePessoaFisicaFull(request.POST)
+        if cliente_form.is_valid():
+            cliente = cliente_form.save(commit=False)
+            endereco_formset = EnderecoFormSet(request.POST, instance=cliente)
+            contato_formset = ContatoFormSet(request.POST, instance=cliente)
+            if endereco_formset.is_valid() and contato_formset.is_valid():
+                endereco_formset.save()
+                contato_formset.save()
+                return reverse_lazy('pessoa_fisica_search')
+        
+        else:
+            cliente = None
+            endereco_formset = EnderecoFormSet(request.POST)
+            contato_formset = ContatoFormSet(request.POST)
+
+    else:
+        cliente_form = ClientePessoaFisicaFull()
+        endereco_formset = EnderecoFormSet()
+        contato_formset = ContatoFormSet()
+
+
+    return render(request, 'cliente/pf/cliente_create.html', {
+        'cliente_form': cliente_form,
+        'endereco_formset': endereco_formset,
+        'contato_formset': contato_formset,
     })
