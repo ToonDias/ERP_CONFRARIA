@@ -15,17 +15,17 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li class="dropdown-submenu">
-              <a class="dropdown-item" href="#">Consultar</a>
+              <a class="dropdown-item" href="#">Pessoa Fisica</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'pessoa_fisica_search' %}">Pessoa Física</a></li>
-                <li><a class="dropdown-item" href="{% url 'pessoa_juridica_search' %}">Pessoa Jurídica</a></li>
+                <li><a class="dropdown-item" href="{% url 'pessoa_fisica_search' %}">Consultar</a></li>
+                <li><a class="dropdown-item" href="{% url 'pessoa_fisica_create' %}">Cadastrar</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a class="dropdown-item" href="#">Cadastrar</a>
+              <a class="dropdown-item" href="#">Pessoa Jurídica</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'pessoa_fisica_create' %}">Pessoa Física</a></li>
-                <li><a class="dropdown-item" href="{% url 'pessoa_juridica_create' %}">Pessoa Jurídica</a></li>
+                <li><a class="dropdown-item" href="{% url 'pessoa_juridica_search' %}">Cosultar</a></li>
+                <li><a class="dropdown-item" href="{% url 'pessoa_juridica_create' %}">Cadastrar</a></li>
               </ul>
             </li>
           </ul>

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}
+    Cliete | Deletar
+{% endblock %}
+
+{% block 'content-main' %}
+<div class="container mt-5">
+  <!-- Card Externo com borda suave e sombra -->
+  <div class="card shadow-lg border-light rounded-3">
+    <div class="card-header text-center bg-success text-white">
+      <h3>Deletar cliente: <strong>{{ cliente.nome }}</strong></h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Tem certeza que deseja excluir esta cliente?</strong></p>
+
+      <!-- Informações da Fabricante com borda e sombra -->
+      <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
+        <h4 class="mb-3 text-success">Informações do cliente</h4>
+        <p><strong>Razão Social:</strong> {{ cliente.nome }}</p>
+        <p><strong>Nome Fantasia:</strong> {{ cliente.nome_fantasia }}</p>
+        <p><strong>CNPJ:</strong> {{ cliente.cpf_cnpj }}</p>
+        <p><strong>Data fundação:</strong> {{ cliente.data_fundacao }}</p>
+        <p><strong>Responsavel:</strong> {{ cliente.responsavel }}</p>
+        <p><strong>Responsavel CPF:</strong> {{ cliente.responsavel_cpf }}</p>
+        <p><strong>Observações:</strong> {{ cliente.obs }}</p>
+      </div>
+
+      <!-- Botões de Ação -->
+      <form method="post">
+        {% csrf_token %}
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-danger shadow-sm px-4 py-2">Sim, excluir</button>
+          <a href="{% url 'pessoa_juridica_search' %}" class="btn btn-secondary shadow-sm px-4 py-2">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Fim do Card Externo -->
+</div>
+{% endblock %}
