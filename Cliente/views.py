@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic import CreateView
@@ -135,13 +135,14 @@ def cliente_pf_create(request):
             cliente = cliente_form.save(commit=False)
             endereco_formset = EnderecoFormSet(request.POST, instance=cliente)
             contato_formset = ContatoFormSet(request.POST, instance=cliente)
+
             if endereco_formset.is_valid() and contato_formset.is_valid():
+                cliente.save()  # salva antes dos formsets para garantir FK válida
                 endereco_formset.save()
                 contato_formset.save()
-                return reverse_lazy('pessoa_fisica_search')
-        
+                return redirect('pessoa_fisica_search')
+
         else:
-            cliente = None
             endereco_formset = EnderecoFormSet(request.POST)
             contato_formset = ContatoFormSet(request.POST)
 
@@ -150,9 +151,34 @@ def cliente_pf_create(request):
         endereco_formset = EnderecoFormSet()
         contato_formset = ContatoFormSet()
 
-
     return render(request, 'cliente/pf/cliente_create.html', {
         'cliente_form': cliente_form,
         'endereco_formset': endereco_formset,
         'contato_formset': contato_formset,
     })
+
+def cliente_pf_update(request, pk):
+    cliente = get_object_or_404(ClientePessoa, pk=pk)
+    
+    if request.method == 'POST':
+        cliente_form = ClientePessoaFisicaFull(request.POST, instance=cliente)
+        endereco_formset = EnderecoFormSet(request.POST, instance=cliente)
+        contato_formset = ContatoFormSet(request.POST, instance=cliente)
+        
+        if cliente_form.is_valid() and endereco_formset.is_valid() and contato_formset.is_valid():
+            cliente = cliente_form.save()
+            endereco_formset.save()
+            contato_formset.save()
+            return redirect('pessoa_fisica_search')  # ou outro nome da sua listagem
+    else:
+        cliente_form = ClientePessoaFisicaFull(instance=cliente)
+        endereco_formset = EnderecoFormSet(instance=cliente)
+        contato_formset = ContatoFormSet(instance=cliente)
+    
+    context = {
+        'form': cliente_form,
+        'endereco_formset': endereco_formset,
+        'contato_formset': contato_formset,
+        'cliente': cliente,
+    }
+    return render(request, 'cliente/pessoa_fisica_form.html', context)

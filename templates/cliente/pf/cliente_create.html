@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block 'title' %}
+{% block title %}
     Cliente | Cadastrar
 {% endblock %}
 
@@ -8,100 +8,205 @@
 <div class="container mt-5">
     <div class="card shadow-lg border-light rounded-3">
         <div class="card-header text-center bg-success text-white">
-            <h3>Cadastro Cliente pssoa Fisica</h3>
+            <h3>Cadastrar Cliente Pessoa Física</h3>
         </div>
         <div class="card-body">
-        {% load crispy_forms_tags %}
+            {% load crispy_forms_tags %}
             <form method="POST" novalidate>
                 {% csrf_token %}
+                <!-- Informações do Cliente -->
                 <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
                     <h4 class="mb-3 text-success">Informações do Cliente</h4>
                     <div class="row">
                         <!-- Nome -->
-            <div class="col-md-12">
-              <div class="mb-3">
-                <label for="{{ form.nome.id_for_label }}" class="form-label"><strong>Nome</strong></label>
-                <input type="text" name="nome" class="form-control shadow-sm {% if form.nome.errors %}is-invalid{% endif %}" id="{{ form.nome.id_for_label }}" value="{{ form.nome.value|default:'' }}" required>
-                {% if form.nome.errors %}
-                  <div class="invalid-feedback">
-                    {% for error in form.nome.errors %}
-                      <p>{{ error }}</p>
-                    {% endfor %}
-                  </div>
-                {% endif %}
-              </div>
-            </div>
-
-            <!-- CPF -->
-            <div class="col-md-12">
-              <div class="mb-3">
-                <label for="{{ form.cpf_cnpj.id_for_label }}" class="form-label"><strong>CPF</strong></label>
-                <input type="text" name="cpf_cnpj" class="form-control shadow-sm {% if form.cpf_cnpj.errors %}is-invalid{% endif %}" id="{{ form.cpf_cnpj.id_for_label }}" value="{{ form.cpf_cnpj.value|default:'' }}" required>
-                {% if form.cpf_cnpj.errors %}
-                  <div class="invalid-feedback">
-                    {% for error in form.cpf_cnpj.errors %}
-                      <p>{{ error }}</p>
-                    {% endfor %}
-                  </div>
-                {% endif %}
-              </div>
-            </div>
-
-            <!-- Data de Nascimento (opcional) -->
-            <div class="col-md-12">
-              <div class="mb-3">
-                <label for="{{ form.data_nascimento.id_for_label }}" class="form-label"><strong>Data de nascimento</strong></label>
-                <input type="date" name="data_nascimento" class="form-control shadow-sm {% if form.data_nascimento.errors %}is-invalid{% endif %}" id="{{ form.data_nascimento.id_for_label }}" value="{{ form.data_nascimento.value|default:'' }}">
-                {% if form.data_nascimento.errors %}
-                  <div class="invalid-feedback">
-                    {% for error in form.data_nascimento.errors %}
-                      <p>{{ error }}</p>
-                    {% endfor %}
-                  </div>
-                {% endif %}
-              </div>
-            </div>
-
-            <!-- Observações (opcional) -->
-            <div class="col-md-12">
-              <div class="mb-3">
-                <label for="{{ form.obs.id_for_label }}" class="form-label"><strong>Detalhes</strong></label>
-                <textarea rows="3" name="obs" class="form-control shadow-sm {% if form.obs.errors %}is-invalid{% endif %}" id="{{ form.obs.id_for_label }}">{{ form.obs.value|default:'' }}</textarea>
-                {% if form.obs.errors %}
-                  <div class="invalid-feedback">
-                    {% for error in form.obs.errors %}
-                      <p>{{ error }}</p>
-                    {% endfor %}
-                  </div>
-                {% endif %}
-              </div>
-            </div>
-                        <!-- <div class="col-md-12">
-                            {{ cliente_form|crispy }}
-                        </div> -->
-                    </div>
-                </div>
-
-                <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
-                    <h4 class="mb-3 text-success">Endereço</h4>
-                    <div class="row">
-                        <div class="col-md-12">
-                            {{ endereco_formset.management_form }}
-                            {% for form in endereco_formset %}
-                                {{ form|crispy }}
-                            {% endfor %}
+                        <div class="col-md-12 mb-3">
+                            <label for="{{ cliente_form.nome.id_for_label }}" class="form-label"><strong>Nome</strong></label>
+                            <input type="text" name="nome" id="{{ cliente_form.nome.id_for_label }}"
+                                   class="form-control shadow-sm {% if cliente_form.nome.errors %}is-invalid{% endif %}"
+                                   value="{{ cliente_form.nome.value|default:'' }}" required>
+                            {% if cliente_form.nome.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in cliente_form.nome.errors %}<p>{{ error }}</p>{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <!-- CPF -->
+                        <div class="col-md-12 mb-3">
+                            <label for="{{ cliente_form.cpf_cnpj.id_for_label }}" class="form-label"><strong>CPF</strong></label>
+                            <input type="text" name="cpf_cnpj" id="{{ cliente_form.cpf_cnpj.id_for_label }}"
+                                   class="form-control shadow-sm {% if cliente_form.cpf_cnpj.errors %}is-invalid{% endif %}"
+                                   value="{{ cliente_form.cpf_cnpj.value|default:'' }}" required>
+                            {% if cliente_form.cpf_cnpj.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in cliente_form.cpf_cnpj.errors %}<p>{{ error }}</p>{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <!-- Data de Nascimento -->
+                        <div class="col-md-12 mb-3">
+                            <label for="{{ cliente_form.data_nascimento.id_for_label }}" class="form-label"><strong>Data de nascimento</strong></label>
+                            <input type="date" name="data_nascimento" id="{{ cliente_form.data_nascimento.id_for_label }}"
+                                   class="form-control shadow-sm {% if cliente_form.data_nascimento.errors %}is-invalid{% endif %}"
+                                   value="{{ cliente_form.data_nascimento.value|default:'' }}">
+                            {% if cliente_form.data_nascimento.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in cliente_form.data_nascimento.errors %}<p>{{ error }}</p>{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <!-- Observações -->
+                        <div class="col-md-12 mb-3">
+                            <label for="{{ cliente_form.obs.id_for_label }}" class="form-label"><strong>Detalhes</strong></label>
+                            <textarea rows="3" name="obs" id="{{ cliente_form.obs.id_for_label }}"
+                                      class="form-control shadow-sm {% if cliente_form.obs.errors %}is-invalid{% endif %}">{{ cliente_form.obs.value|default:'' }}</textarea>
+                            {% if cliente_form.obs.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in cliente_form.obs.errors %}<p>{{ error }}</p>{% endfor %}
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
+                <!-- Contato -->
                 <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
                     <h4 class="mb-3 text-success">Contato</h4>
-                    <div class="col-md-12">
-                        {{ contato_formset.management_form }}
-                        {% for form in contato_formset %}
-                            {{ form|crispy }}
-                        {% endfor %}
-                    </div>
+                    {{ contato_formset.management_form }}
+                    {% for form in contato_formset %}
+                        <div class="row">
+                            <!-- Tipo -->
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.tipo_contato.id_for_label }}" class="form-label"><strong>Tipo</strong></label>
+                                <select name="{{ form.tipo_contato.html_name }}" id="{{ form.tipo_contato.id_for_label }}"
+                                        class="form-select shadow-sm {% if form.tipo_contato.errors %}is-invalid{% endif %}">
+                                    {% for val, label in form.fields.tipo_contato.choices %}
+                                        <option value="{{ val }}" {% if form.tipo_contato.value == val %}selected{% endif %}>{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                                {% if form.tipo_contato.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.tipo_contato.errors %}<p>{{ error }}</p>{% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- Contato -->
+                            <div class="col-md-8 mb-3">
+                                <label for="{{ form.contato.id_for_label }}" class="form-label"><strong>Contato</strong></label>
+                                <input type="text" name="{{ form.contato.html_name }}" id="{{ form.contato.id_for_label }}"
+                                    value="{{ form.contato.value|default:'' }}"
+                                    class="form-control shadow-sm {% if form.contato.errors %}is-invalid{% endif %}">
+                                {% if form.contato.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.contato.errors %}<p>{{ error }}</p>{% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- Observações -->
+                            <div class="col-md-12 mb-3">
+                                <label for="{{ form.obs.id_for_label }}" class="form-label"><strong>Observações</strong></label>
+                                <textarea rows="2" name="{{ form.obs.html_name }}" id="{{ form.obs.id_for_label }}"
+                                        class="form-control shadow-sm {% if form.obs.errors %}is-invalid{% endif %}">{{ form.obs.value|default:'' }}</textarea>
+                                {% if form.obs.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.obs.errors %}<p>{{ error }}</p>{% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
+                <!-- Endereços -->
+                <div class="section-box mb-4 p-4 rounded-2 border border-secondary shadow-sm">
+                    <h4 class="mb-3 text-success">Endereço</h4>
+                    {{ endereco_formset.management_form }}
+                    {% for form in endereco_formset %}
+                        <div class="row">
+                            <!-- Endereço -->
+                            <div class="col-md-8 mb-3">
+                                <label for="{{ form.endereco.id_for_label }}" class="form-label"><strong>Rua</strong></label>
+                                <input type="text" name="{{ form.endereco.html_name }}" id="{{ form.endereco.id_for_label }}"
+                                    value="{{ form.endereco.value|default:'' }}"
+                                    class="form-control shadow-sm {% if form.endereco.errors %}is-invalid{% endif %}">
+                                {% if form.endereco.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.endereco.errors %}<p>{{ error }}</p>{% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- Número -->
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.numero.id_for_label }}" class="form-label"><strong>Número</strong></label>
+                                <input type="number" name="{{ form.numero.html_name }}" id="{{ form.numero.id_for_label }}"
+                                    value="{{ form.numero.value|default:'' }}"
+                                    class="form-control shadow-sm {% if form.numero.errors %}is-invalid{% endif %}">
+                                {% if form.numero.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.numero.errors %}<p>{{ error }}</p>{% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- Bairro -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.bairro.id_for_label }}" class="form-label"><strong>Bairro</strong></label>
+                                <input type="text" name="{{ form.bairro.html_name }}" id="{{ form.bairro.id_for_label }}"
+                                    value="{{ form.bairro.value|default:'' }}"
+                                    class="form-control shadow-sm {% if form.bairro.errors %}is-invalid{% endif %}">
+                                {% if form.bairro.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.bairro.errors %}<p>{{ error }}</p>{% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- Cidade -->
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.cidade.id_for_label }}" class="form-label"><strong>Cidade</strong></label>
+                                <input type="text" name="{{ form.cidade.html_name }}" id="{{ form.cidade.id_for_label }}"
+                                    value="{{ form.cidade.value|default:'' }}"
+                                    class="form-control shadow-sm {% if form.cidade.errors %}is-invalid{% endif %}">
+                                {% if form.cidade.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.cidade.errors %}<p>{{ error }}</p>{% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- UF -->
+                            <div class="col-md-2 mb-3">
+                                <label for="{{ form.uf.id_for_label }}" class="form-label"><strong>UF</strong></label>
+                                <input type="text" name="{{ form.uf.html_name }}" id="{{ form.uf.id_for_label }}"
+                                    value="{{ form.uf.value|default:'' }}"
+                                    class="form-control shadow-sm {% if form.uf.errors %}is-invalid{% endif %}" maxlength="2">
+                                {% if form.uf.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.uf.errors %}<p>{{ error }}</p>{% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- CEP -->
+                            <div class="col-md-4 mb-3">
+                                <label for="{{ form.cep.id_for_label }}" class="form-label"><strong>CEP</strong></label>
+                                <input type="text" name="{{ form.cep.html_name }}" id="{{ form.cep.id_for_label }}"
+                                    value="{{ form.cep.value|default:'' }}"
+                                    class="form-control shadow-sm {% if form.cep.errors %}is-invalid{% endif %}">
+                                {% if form.cep.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.cep.errors %}<p>{{ error }}</p>{% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- Complemento -->
+                            <div class="col-md-12 mb-3">
+                                <label for="{{ form.complemento.id_for_label }}" class="form-label"><strong>Complemento</strong></label>
+                                <textarea rows="2" name="{{ form.complemento.html_name }}" id="{{ form.complemento.id_for_label }}"
+                                        class="form-control shadow-sm {% if form.complemento.errors %}is-invalid{% endif %}">{{ form.complemento.value|default:'' }}</textarea>
+                                {% if form.complemento.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.complemento.errors %}<p>{{ error }}</p>{% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- Botões -->
                 <div class="d-flex justify-content-between mt-4">
                     <button type="submit" class="btn btn-success shadow-sm px-4 py-2">Salvar</button>
                     <a href="{% url 'pessoa_fisica_search' %}" class="btn btn-secondary shadow-sm px-4 py-2">Cancelar</a>
